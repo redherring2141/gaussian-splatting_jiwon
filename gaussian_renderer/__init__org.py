@@ -15,21 +15,12 @@ from diff_gaussian_rasterization import GaussianRasterizationSettings, GaussianR
 from scene.gaussian_model import GaussianModel
 from utils.sh_utils import eval_sh
 
-import time #JWLB_20231226
-
 def render(viewpoint_camera, pc : GaussianModel, pipe, bg_color : torch.Tensor, scaling_modifier = 1.0, override_color = None):
-    starter, ender = torch.cuda.Event(enable_timing=True), torch.cuda.Event(enable_timing=True);#JWLB_20240112    
-
     """
     Render the scene. 
     
     Background tensor (bg_color) must be on GPU!
     """
-
-    #torch.cuda.synchronize()          #JWLB_20231226
-    torch.cuda.nvtx.range_push("[JWLB-gaussian_renderer/__init__.py-render]06prep_rasterizer")   #JWLB_20240101
-    #tt_preparation = time.time()    #JWLB_20231226    
-    starter.record()#JWLB_20240112
  
     # Create zero tensor. We will use it to make pytorch return gradients of the 2D (screen-space) means
     screenspace_points = torch.zeros_like(pc.get_xyz, dtype=pc.get_xyz.dtype, requires_grad=True, device="cuda") + 0
@@ -90,16 +81,6 @@ def render(viewpoint_camera, pc : GaussianModel, pipe, bg_color : torch.Tensor, 
     else:
         colors_precomp = override_color
 
-    torch.cuda.synchronize()      #JWLB_20231226
-    #ender.record(); torch.cuda.synchronize(); print(f'[JWLB-gaussian_renderer/__init__.py-render]06prep_rasterizer: {(time.time()-tt_preparation)*1000}ms') #JWLB_20231226
-    ender.record(); torch.cuda.synchronize(); print(f'[JWLB-gaussian_renderer/__init__.py-render]06prep_rasterizer: {starter.elapsed_time(ender)}ms') #JWLB_20240112
-    torch.cuda.nvtx.range_pop()   #JWLB_20240101
-    torch.cuda.synchronize()      #JWLB_20231226
-    #tt_rasterizer = time.time() #JWLB_20231226
-    starter.record()#JWLB_20240112
-    torch.cuda.nvtx.range_push("[JWLB-gaussian_renderer/__init__.py-render]07rasterizer")   #JWLB_20240101
-
-
     # Rasterize visible Gaussians to image, obtain their radii (on screen). 
     rendered_image, radii = rasterizer(
         means3D = means3D,
@@ -110,12 +91,6 @@ def render(viewpoint_camera, pc : GaussianModel, pipe, bg_color : torch.Tensor, 
         scales = scales,
         rotations = rotations,
         cov3D_precomp = cov3D_precomp)
-    
-    #torch.cuda.synchronize()          #JWLB_20231226
-    #ender.record(); torch.cuda.synchronize(); print(f'[JWLB-gaussian_renderer/__init__.py-render]07rasterizer: {(time.time()-tt_rasterizer)*1000}ms') #JWLB_20231226
-    ender.record(); torch.cuda.synchronize(); print(f'[JWLB-gaussian_renderer/__init__.py-render]07rasterizer: {starter.elapsed_time(ender)}ms') #JWLB_20240112
-    torch.cuda.nvtx.range_pop()   #JWLB_20240101
-
 
     # Those Gaussians that were frustum culled or had a radius of 0 were not visible.
     # They will be excluded from value updates used in the splitting criteria.
