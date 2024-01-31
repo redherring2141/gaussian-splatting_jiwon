@@ -223,7 +223,7 @@ int CudaRasterizer::Rasterizer::forward(
 	bool debug)
 {
 
-#ifdef _NVTX_
+#ifdef _NSYSNVTX_
 	nvtxRangePush("[JWLB-rasterizer_impl.cu-forward]13CUDAengine_preprocess");//JWLB_20240101
 #endif
 #ifdef _CUDAEVENT_
@@ -286,7 +286,7 @@ int CudaRasterizer::Rasterizer::forward(
 	), debug)
 
 
-#ifdef _NVTX_
+#ifdef _NSYSNVTX_
 	nvtxRangePop();//JWLB_20240101	
 	nvtxRangePush("[JWLB-rasterizer_impl.cu-forward]14CUDAengine_InclusiveSum");//JWLB_20240101
 #endif
@@ -306,7 +306,7 @@ int CudaRasterizer::Rasterizer::forward(
 	CHECK_CUDA(cudaMemcpy(&num_rendered, geomState.point_offsets + P - 1, sizeof(int), cudaMemcpyDeviceToHost), debug);
 
 
-#ifdef _NVTX_
+#ifdef _NSYSNVTX_
 	nvtxRangePop();//JWLB_20240101	
 	nvtxRangePush("[JWLB-rasterizer_impl.cu-forward]15CUDAengine_BinningStatefromChunk");//JWLB_20240101			
 #endif
@@ -322,7 +322,7 @@ int CudaRasterizer::Rasterizer::forward(
 	BinningState binningState = BinningState::fromChunk(binning_chunkptr, num_rendered);
 
 
-#ifdef _NVTX_
+#ifdef _NSYSNVTX_
 	nvtxRangePop();//JWLB_20240101	
 	nvtxRangePush("[JWLB-rasterizer_impl.cu-forward]16CUDAengine_duplicateWithKeys");//JWLB_20240101
 #endif
@@ -349,7 +349,7 @@ int CudaRasterizer::Rasterizer::forward(
 	int bit = getHigherMsb(tile_grid.x * tile_grid.y);
 
 
-#ifdef _NVTX_
+#ifdef _NSYSNVTX_
 	nvtxRangePop();//JWLB_20240101	
 	nvtxRangePush("[JWLB-rasterizer_impl.cu-forward]17CUDAengine_sortGaussianIndexKeys");//JWLB_20240101		
 #endif
@@ -371,7 +371,7 @@ int CudaRasterizer::Rasterizer::forward(
 	CHECK_CUDA(cudaMemset(imgState.ranges, 0, tile_grid.x * tile_grid.y * sizeof(uint2)), debug);
 
 
-#ifdef _NVTX_
+#ifdef _NSYSNVTX_
 	nvtxRangePop();//JWLB_20240101	
 	nvtxRangePush("[JWLB-rasterizer_impl.cu-forward]18CUDAengine_identifyTileRanges");//JWLB_20240101
 #endif
@@ -391,7 +391,7 @@ int CudaRasterizer::Rasterizer::forward(
 	CHECK_CUDA(, debug)
 
 
-#ifdef _NVTX_
+#ifdef _NSYSNVTX_
 	nvtxRangePop();//JWLB_20240101	
 	nvtxRangePush("[JWLB-rasterizer_impl.cu-forward]19CUDAengine_blendInOrder");//JWLB_20240101		
 #endif
@@ -418,7 +418,7 @@ int CudaRasterizer::Rasterizer::forward(
 		out_color), debug)
 
 
-#ifdef _NVTX_
+#ifdef _NSYSNVTX_
 	nvtxRangePop();//JWLB_20240101
 #endif
 #ifdef _CUDAEVENT_
@@ -463,7 +463,7 @@ void CudaRasterizer::Rasterizer::backward(
 	float* dL_drot,
 	bool debug)
 {
-#ifdef _NVTX_
+#ifdef _NSYSNVTX_
 	nvtxRangePush("[JWLB-rasterizer_impl.cu-backward]19_1CUDAengine_prep_backward");//JWLB_20240109
 #endif
 #ifdef _CUDAEVENT_
@@ -486,7 +486,7 @@ void CudaRasterizer::Rasterizer::backward(
 	const dim3 tile_grid((width + BLOCK_X - 1) / BLOCK_X, (height + BLOCK_Y - 1) / BLOCK_Y, 1);
 	const dim3 block(BLOCK_X, BLOCK_Y, 1);
 
-#ifdef _NVTX_
+#ifdef _NSYSNVTX_
 	nvtxRangePop();//JWLB_20240112
 	nvtxRangePush("[JWLB-rasterizer_impl.cu-backward]19_2CUDAengine_backward_render");//JWLB_20240112
 #endif
@@ -556,7 +556,7 @@ void CudaRasterizer::Rasterizer::backward(
 		(glm::vec3*)dL_dscale,
 		(glm::vec4*)dL_drot), debug)
 
-#ifdef _NVTX_
+#ifdef _NSYSNVTX_
 	nvtxRangePop();//JWLB_20240109
 #endif
 #ifdef _CUDAEVENT_

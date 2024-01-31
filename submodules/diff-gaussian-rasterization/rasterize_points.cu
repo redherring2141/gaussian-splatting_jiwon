@@ -59,7 +59,7 @@ RasterizeGaussiansCUDA(
 {
 
 
-#ifdef _NVTX_	
+#ifdef _NSYSNVTX_	
 	nvtxRangePush("[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]11CUDAengine_prep_forward");//JWLB_20240101
 #endif
 #ifdef _CUDAEVENT_
@@ -92,7 +92,7 @@ RasterizeGaussiansCUDA(
   std::function<char*(size_t)> imgFunc = resizeFunctional(imgBuffer);
 
 
-#ifdef _NVTX_
+#ifdef _NSYSNVTX_
 	nvtxRangePop();//JWLB_20240101
 	nvtxRangePush("[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]12CUDAengine_forward");//JWLB_20240101	
 #endif
@@ -139,7 +139,7 @@ RasterizeGaussiansCUDA(
   }
 
 
-#ifdef _NVTX_
+#ifdef _NSYSNVTX_
 	nvtxRangePop();//JWLB_20240101
 #endif
 #ifdef _CUDAEVENT_
@@ -174,7 +174,7 @@ std::tuple<torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor, torch::Te
 	const torch::Tensor& imageBuffer,
 	const bool debug) 
 {
-#ifdef _NVTX_
+#ifdef _NSYSNVTX_
 	nvtxRangePush("[JWLB-rasterize_points.cu-RasterizeGaussiansBackwardCUDA]20CUDAengine_BackwardCUDA");//JWLB_20240109
 #endif
 #ifdef _CUDAEVENT_
@@ -235,7 +235,7 @@ std::tuple<torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor, torch::Te
 	  dL_drotations.contiguous().data<float>(),
 	  debug);
   }
-#ifdef _NVTX_
+#ifdef _NSYSNVTX_
 	nvtxRangePop();//JWLB_20240109
 #endif
 #ifdef _CUDAEVENT_
