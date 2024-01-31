@@ -222,11 +222,16 @@ int CudaRasterizer::Rasterizer::forward(
 	int* radii,
 	bool debug)
 {
+
+#ifdef _NVTX_
 	nvtxRangePush("[JWLB-rasterizer_impl.cu-forward]13CUDAengine_preprocess");//JWLB_20240101
+#endif
+#ifdef _CUDAEVENT_
 	cudaEvent_t start_JWLB, stop_JWLB; float msec=0; cudaEventCreate(&start_JWLB);	cudaEventCreate(&stop_JWLB);	//JWLB_20231226
 	cudaEventRecord(start_JWLB);	cudaEventSynchronize(start_JWLB);	//JWLB_20231226
+#endif
 	
-
+	
 	const float focal_y = height / (2.0f * tan_fovy);
 	const float focal_x = width / (2.0f * tan_fovx);
 
@@ -281,11 +286,15 @@ int CudaRasterizer::Rasterizer::forward(
 	), debug)
 
 
+#ifdef _NVTX_
+	nvtxRangePop();//JWLB_20240101	
+	nvtxRangePush("[JWLB-rasterizer_impl.cu-forward]14CUDAengine_InclusiveSum");//JWLB_20240101
+#endif
+#ifdef _CUDAEVENT_
 	cudaEventRecord(stop_JWLB);		cudaEventSynchronize(stop_JWLB);	cudaEventElapsedTime(&msec, start_JWLB, stop_JWLB);	//JWLB_20231226
 	std::cout << "[JWLB-rasterizer_impl.cu-forward]13CUDAengine_preprocess: " << msec << "ms" << std::endl; //JWLB_20231226
-	nvtxRangePop();//JWLB_20240101	
-	nvtxRangePush("[JWLB-rasterizer_impl.cu-forward]14CUDAengine_InclusiveSum");//JWLB_20240101		
 	cudaEventRecord(start_JWLB);	cudaEventSynchronize(start_JWLB);	//JWLB_20231226	
+#endif
 
 
 	// Compute prefix sum over full list of touched tile counts by Gaussians
@@ -297,22 +306,32 @@ int CudaRasterizer::Rasterizer::forward(
 	CHECK_CUDA(cudaMemcpy(&num_rendered, geomState.point_offsets + P - 1, sizeof(int), cudaMemcpyDeviceToHost), debug);
 
 
-	cudaEventRecord(stop_JWLB);		cudaEventSynchronize(stop_JWLB);	cudaEventElapsedTime(&msec, start_JWLB, stop_JWLB);	//JWLB_20231226
-	std::cout << "[JWLB-rasterizer_impl.cu-forward]14CUDAengine_InclusiveSum: " << msec << "ms" << std::endl; //JWLB_20231226
+#ifdef _NVTX_
 	nvtxRangePop();//JWLB_20240101	
 	nvtxRangePush("[JWLB-rasterizer_impl.cu-forward]15CUDAengine_BinningStatefromChunk");//JWLB_20240101			
+#endif
+#ifdef _CUDAEVENT_
+	cudaEventRecord(stop_JWLB);		cudaEventSynchronize(stop_JWLB);	cudaEventElapsedTime(&msec, start_JWLB, stop_JWLB);	//JWLB_20231226
+	std::cout << "[JWLB-rasterizer_impl.cu-forward]14CUDAengine_InclusiveSum: " << msec << "ms" << std::endl; //JWLB_20231226
 	cudaEventRecord(start_JWLB);	cudaEventSynchronize(start_JWLB);	//JWLB_20231226	
+#endif
 
 
 	size_t binning_chunk_size = required<BinningState>(num_rendered);
 	char* binning_chunkptr = binningBuffer(binning_chunk_size);
 	BinningState binningState = BinningState::fromChunk(binning_chunkptr, num_rendered);
 
+
+#ifdef _NVTX_
+	nvtxRangePop();//JWLB_20240101	
+	nvtxRangePush("[JWLB-rasterizer_impl.cu-forward]16CUDAengine_duplicateWithKeys");//JWLB_20240101
+#endif
+#ifdef _CUDAEVENT_
 	cudaEventRecord(stop_JWLB);		cudaEventSynchronize(stop_JWLB);	cudaEventElapsedTime(&msec, start_JWLB, stop_JWLB);	//JWLB_20231226
 	std::cout << "[JWLB-rasterizer_impl.cu-forward]15CUDAengine_BinningStatefromChunk: " << msec << "ms" << std::endl; //JWLB_20231226
-	nvtxRangePop();//JWLB_20240101	
-	nvtxRangePush("[JWLB-rasterizer_impl.cu-forward]16CUDAengine_duplicateWithKeys");//JWLB_20240101		
-	cudaEventRecord(start_JWLB);	cudaEventSynchronize(start_JWLB);	//JWLB_20231226	
+	cudaEventRecord(start_JWLB);	cudaEventSynchronize(start_JWLB);	//JWLB_20231226
+#endif
+
 
 	// For each instance to be rendered, produce adequate [ tile | depth ] key 
 	// and corresponding dublicated Gaussian indices to be sorted
@@ -329,11 +348,17 @@ int CudaRasterizer::Rasterizer::forward(
 
 	int bit = getHigherMsb(tile_grid.x * tile_grid.y);
 
-	cudaEventRecord(stop_JWLB);		cudaEventSynchronize(stop_JWLB);	cudaEventElapsedTime(&msec, start_JWLB, stop_JWLB);	//JWLB_20231226
-	std::cout << "[JWLB-rasterizer_impl.cu-forward]16CUDAengine_duplicateWithKeys: " << msec << "ms" << std::endl; //JWLB_20231226
+
+#ifdef _NVTX_
 	nvtxRangePop();//JWLB_20240101	
 	nvtxRangePush("[JWLB-rasterizer_impl.cu-forward]17CUDAengine_sortGaussianIndexKeys");//JWLB_20240101		
+#endif
+#ifdef _CUDAEVENT_
+	cudaEventRecord(stop_JWLB);		cudaEventSynchronize(stop_JWLB);	cudaEventElapsedTime(&msec, start_JWLB, stop_JWLB);	//JWLB_20231226
+	std::cout << "[JWLB-rasterizer_impl.cu-forward]16CUDAengine_duplicateWithKeys: " << msec << "ms" << std::endl; //JWLB_20231226
 	cudaEventRecord(start_JWLB);	cudaEventSynchronize(start_JWLB);	//JWLB_20231226		
+#endif
+
 
 	// Sort complete list of (duplicated) Gaussian indices by keys
 	CHECK_CUDA(cub::DeviceRadixSort::SortPairs(
@@ -345,11 +370,17 @@ int CudaRasterizer::Rasterizer::forward(
 
 	CHECK_CUDA(cudaMemset(imgState.ranges, 0, tile_grid.x * tile_grid.y * sizeof(uint2)), debug);
 
+
+#ifdef _NVTX_
+	nvtxRangePop();//JWLB_20240101	
+	nvtxRangePush("[JWLB-rasterizer_impl.cu-forward]18CUDAengine_identifyTileRanges");//JWLB_20240101
+#endif
+#ifdef _CUDAEVENT_
 	cudaEventRecord(stop_JWLB);		cudaEventSynchronize(stop_JWLB);	cudaEventElapsedTime(&msec, start_JWLB, stop_JWLB);	//JWLB_20231226
 	std::cout << "[JWLB-rasterizer_impl.cu-forward]17CUDAengine_sortGaussianIndexKeys: " << msec << "ms" << std::endl; //JWLB_20231226
-	nvtxRangePop();//JWLB_20240101	
-	nvtxRangePush("[JWLB-rasterizer_impl.cu-forward]18CUDAengine_identifyTileRanges");//JWLB_20240101	
 	cudaEventRecord(start_JWLB);	cudaEventSynchronize(start_JWLB);	//JWLB_20231226		
+#endif
+
 
 	// Identify start and end of per-tile workloads in sorted list
 	if (num_rendered > 0)
@@ -359,11 +390,17 @@ int CudaRasterizer::Rasterizer::forward(
 			imgState.ranges);
 	CHECK_CUDA(, debug)
 
-	cudaEventRecord(stop_JWLB);		cudaEventSynchronize(stop_JWLB);	cudaEventElapsedTime(&msec, start_JWLB, stop_JWLB);	//JWLB_20231226
-	std::cout << "[JWLB-rasterizer_impl.cu-forward]18CUDAengine_identifyTileRanges: " << msec << "ms" << std::endl; //JWLB_20231226
+
+#ifdef _NVTX_
 	nvtxRangePop();//JWLB_20240101	
 	nvtxRangePush("[JWLB-rasterizer_impl.cu-forward]19CUDAengine_blendInOrder");//JWLB_20240101		
+#endif
+#ifdef _CUDAEVENT_
+	cudaEventRecord(stop_JWLB);		cudaEventSynchronize(stop_JWLB);	cudaEventElapsedTime(&msec, start_JWLB, stop_JWLB);	//JWLB_20231226
+	std::cout << "[JWLB-rasterizer_impl.cu-forward]18CUDAengine_identifyTileRanges: " << msec << "ms" << std::endl; //JWLB_20231226
 	cudaEventRecord(start_JWLB);	cudaEventSynchronize(start_JWLB);	//JWLB_20231226			
+#endif
+
 
 	// Let each tile blend its range of Gaussians independently in parallel
 	const float* feature_ptr = colors_precomp != nullptr ? colors_precomp : geomState.rgb;
@@ -380,9 +417,14 @@ int CudaRasterizer::Rasterizer::forward(
 		background,
 		out_color), debug)
 
+
+#ifdef _NVTX_
+	nvtxRangePop();//JWLB_20240101
+#endif
+#ifdef _CUDAEVENT_
 	cudaEventRecord(stop_JWLB);		cudaEventSynchronize(stop_JWLB);	cudaEventElapsedTime(&msec, start_JWLB, stop_JWLB);	//JWLB_20231226
 	std::cout << "[JWLB-rasterizer_impl.cu-forward]19CUDAengine_blendInOrder: " << msec << "ms" << std::endl; //JWLB_20231226
-	nvtxRangePop();//JWLB_20240101	
+#endif
 
 
 	return num_rendered;
@@ -421,9 +463,13 @@ void CudaRasterizer::Rasterizer::backward(
 	float* dL_drot,
 	bool debug)
 {
+#ifdef _NVTX_
 	nvtxRangePush("[JWLB-rasterizer_impl.cu-backward]19_1CUDAengine_prep_backward");//JWLB_20240109
+#endif
+#ifdef _CUDAEVENT_
 	cudaEvent_t start_JWLB, stop_JWLB; float msec=0; cudaEventCreate(&start_JWLB);	cudaEventCreate(&stop_JWLB);	//JWLB_20240109
 	cudaEventRecord(start_JWLB);	cudaEventSynchronize(start_JWLB);	//JWLB_20240109
+#endif
 
 	GeometryState geomState = GeometryState::fromChunk(geom_buffer, P);
 	BinningState binningState = BinningState::fromChunk(binning_buffer, R);
@@ -440,11 +486,16 @@ void CudaRasterizer::Rasterizer::backward(
 	const dim3 tile_grid((width + BLOCK_X - 1) / BLOCK_X, (height + BLOCK_Y - 1) / BLOCK_Y, 1);
 	const dim3 block(BLOCK_X, BLOCK_Y, 1);
 
-	cudaEventRecord(stop_JWLB);		cudaEventSynchronize(stop_JWLB);	cudaEventElapsedTime(&msec, start_JWLB, stop_JWLB);	//JWLB_20240112
-	std::cout << "[JWLB-rasterizer_impl.cu-backward]19_1CUDAengine_prep_backward: " << msec << "ms" << std::endl; //JWLB_20240112
+#ifdef _NVTX_
 	nvtxRangePop();//JWLB_20240112
 	nvtxRangePush("[JWLB-rasterizer_impl.cu-backward]19_2CUDAengine_backward_render");//JWLB_20240112
+#endif
+#ifdef _CUDAEVENT_
+	cudaEventRecord(stop_JWLB);		cudaEventSynchronize(stop_JWLB);	cudaEventElapsedTime(&msec, start_JWLB, stop_JWLB);	//JWLB_20240112
+	std::cout << "[JWLB-rasterizer_impl.cu-backward]19_1CUDAengine_prep_backward: " << msec << "ms" << std::endl; //JWLB_20240112
 	cudaEventRecord(start_JWLB);	cudaEventSynchronize(start_JWLB);	//JWLB_20240112
+#endif
+
 
 	// Compute loss gradients w.r.t. 2D mean position, conic matrix,
 	// opacity and RGB of Gaussians from per-pixel loss gradients.
@@ -468,11 +519,15 @@ void CudaRasterizer::Rasterizer::backward(
 		dL_dopacity,
 		dL_dcolor), debug)
 
-	cudaEventRecord(stop_JWLB);		cudaEventSynchronize(stop_JWLB);	cudaEventElapsedTime(&msec, start_JWLB, stop_JWLB);	//JWLB_20240112
-	std::cout << "[JWLB-rasterizer_impl.cu-backward]19_2CUDAengine_backward_render: " << msec << "ms" << std::endl; //JWLB_20240112
+#ifdef _NVTX
 	nvtxRangePop();//JWLB_20240112
 	nvtxRangePush("[JWLB-rasterizer_impl.cu-backward]19_3CUDAengine_backward_preprocess");//JWLB_20240112
+#endif
+#ifdef _CUDAEVENT_
+	cudaEventRecord(stop_JWLB);		cudaEventSynchronize(stop_JWLB);	cudaEventElapsedTime(&msec, start_JWLB, stop_JWLB);	//JWLB_20240112
+	std::cout << "[JWLB-rasterizer_impl.cu-backward]19_2CUDAengine_backward_render: " << msec << "ms" << std::endl; //JWLB_20240112
 	cudaEventRecord(start_JWLB);	cudaEventSynchronize(start_JWLB);	//JWLB_20240112
+#endif
 
 	// Take care of the rest of preprocessing. Was the precomputed covariance
 	// given to us or a scales/rot pair? If precomputed, pass that. If not,
@@ -501,7 +556,12 @@ void CudaRasterizer::Rasterizer::backward(
 		(glm::vec3*)dL_dscale,
 		(glm::vec4*)dL_drot), debug)
 
+#ifdef _NVTX_
+	nvtxRangePop();//JWLB_20240109
+#endif
+#ifdef _CUDAEVENT_
 	cudaEventRecord(stop_JWLB);		cudaEventSynchronize(stop_JWLB);	cudaEventElapsedTime(&msec, start_JWLB, stop_JWLB);	//JWLB_20240109
 	std::cout << "[JWLB-rasterizer_impl.cu-backward]19_3CUDAengine_backward_preprocess: " << msec << "ms" << std::endl; //JWLB_20240109
-	nvtxRangePop();//JWLB_20240109		
+#endif
+
 }

@@ -28,10 +28,8 @@ import time     #JWLB_20231226
 
 def render_set(model_path, name, iteration, views, gaussians, pipeline, background, NSYSNVTX, CUDAEVENT):
     if NSYSNVTX == True:#JWLB_20240130
-        pipeline.pNSYSNVTX = True#JWLB_20240131
         torch.cuda.nvtx.range_push("[JWLB-render.py-render_set]03prep_render")   #JWLB_20240101
     if CUDAEVENT == True:#JWLB_20240130
-        pipeline.pCUDAEVENT = True#JWLB_20240131
         starter, ender = torch.cuda.Event(enable_timing=True), torch.cuda.Event(enable_timing=True);#JWLB_20240112        
         torch.cuda.synchronize()              #JWLB_20231226
         starter.record()#JWLB_20240112
@@ -50,8 +48,7 @@ def render_set(model_path, name, iteration, views, gaussians, pipeline, backgrou
         starter.record()#JWLB_20240112
 
     for idx, view in enumerate(tqdm(views, desc="Rendering progress")):
-        rendering = render(view, gaussians, pipeline, background)["render"]
-        #rendering = render(view, gaussians, pipeline, background, NSYSNVTX, CUDAEVENT)["render"]
+        rendering = render(view, gaussians, pipeline, background, NSYSNVTX, CUDAEVENT)["render"]
         gt = view.original_image[0:3, :, :]
         #torchvision.utils.save_image(rendering, os.path.join(render_path, '{0:05d}'.format(idx) + ".png"))
         #torchvision.utils.save_image(gt, os.path.join(gts_path, '{0:05d}'.format(idx) + ".png"))
