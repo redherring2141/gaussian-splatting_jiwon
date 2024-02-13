@@ -52,7 +52,7 @@ for line in lines:
 print("<Total>")
 for m in metrics:
     print("{}: {}".format(m, sum(metrics[m])))
-
+'''
 print("<Average>")
 for m in metrics:
     print("{}: {}".format(m, sum(metrics[m])/len(metrics[m])))
@@ -60,4 +60,4 @@ for m in metrics:
     #print(metrics[m])
     #print(sum(metrics[m])/len(metrics[m]))
     #print(len(metrics[m]))
-
+'''

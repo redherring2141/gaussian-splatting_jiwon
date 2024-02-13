@@ -301,6 +301,8 @@ renderCUDA(
 	uint32_t contributor = 0;
 	uint32_t last_contributor = 0;
 	float C[CHANNELS] = { 0 };
+	float tmp = 1.0f; //JWLB_20240202
+	//uint32_t count_eq1[BLOCK_SIZE] = {0}; //JWLB_20240202
 
 	// Iterate over batches until all done or range is complete
 	for (int i = 0; i < rounds; i++, toDo -= BLOCK_SIZE)
@@ -321,6 +323,7 @@ renderCUDA(
 		}
 		block.sync();
 
+
 		// Iterate over current batch
 		for (int j = 0; !done && j < min(BLOCK_SIZE, toDo); j++)
 		{
@@ -334,7 +337,10 @@ renderCUDA(
 			float4 con_o = collected_conic_opacity[j];
 			float power = -0.5f * (con_o.x * d.x * d.x + con_o.z * d.y * d.y) - con_o.y * d.x * d.y;
 			if (power > 0.0f)
-				continue;
+				continue;//JWLB_20240201
+
+//			float4 con_o = {(float)0.3f, (float)0.4f, (float)0.5f, (float)0.6f};	float power = 0.2f;//2.0f;//JWLB_20240131
+//			float4 con_o = {(float)0.3f*tmp, (float)0.4f*tmp, (float)0.5f*tmp, (float)0.6f*tmp};	float power = con_o.w*0.2f;//2.0f;//JWLB_20240131
 
 			// Eq. (2) from 3D Gaussian splatting paper.
 			// Obtain alpha by multiplying with Gaussian opacity
@@ -342,34 +348,47 @@ renderCUDA(
 			// Avoid numerical instabilities (see paper appendix). 
 			float alpha = min(0.99f, con_o.w * exp(power));
 			if (alpha < 1.0f / 255.0f)
-				continue;
+				continue;//JWLB_20240201
 			float test_T = T * (1 - alpha);
 			if (test_T < 0.0001f)
 			{
-				done = true;
-				continue;
+				done = true;//JWLB_20240201
+				continue;//JWLB_20240201
 			}
+
+//			float alpha = 0.2f;	float test_T = 0.3f;//JWLB_20240131
+//			float alpha = power*0.2f;	float test_T = alpha*0.3f;//JWLB_20240131
+
 
 			// Eq. (3) from 3D Gaussian splatting paper.
 			for (int ch = 0; ch < CHANNELS; ch++)
 				C[ch] += features[collected_id[j] * CHANNELS + ch] * alpha * T;
+				//C[ch] += features[collected_id[j] * CHANNELS + ch]*T;
+
+//			C[0]=0.3; C[1]=0.4; C[2]=0.5;//JWLB_20240131
+//			C[0]=T*0.3; C[1]=T*0.4; C[2]=T*0.5;//JWLB_20240131
 
 			T = test_T;
 
 			// Keep track of last range entry to update this
 			// pixel.
 			last_contributor = contributor;
+//			tmp = power;
 		}
+
+		//pix_tmp[i] = tmp;//JWLB_20240206
 	}
 
+	n_contrib[pix_id] = last_contributor;
 	// All threads that treat valid pixel write out their final
 	// rendering data to the frame and auxiliary buffers.
 	if (inside)
 	{
 		final_T[pix_id] = T;
-		n_contrib[pix_id] = last_contributor;
+		//n_contrib[pix_id] = last_contributor;
 		for (int ch = 0; ch < CHANNELS; ch++)
 			out_color[ch * H * W + pix_id] = C[ch] + T * bg_color[ch];
+			//out_color[ch * H * W + pix_id] = C[ch] + bg_color[ch];
 	}
 }
 

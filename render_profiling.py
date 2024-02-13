@@ -84,13 +84,13 @@ def render_sets(dataset : ModelParams, iteration : int, pipeline : PipelineParam
         if CUDAEVENT == True:#JWLB_20240130
             ender.record(); torch.cuda.synchronize(); print(f'[JWLB-render.py-render_sets]02prep_render_set: {starter.elapsed_time(ender)}ms') #JWLB_20240112
             starter.record()#JWLB_20240112        
-
+        torch.cuda.cudart().cudaProfilerStart()#JWLB_20240206
         if not skip_train:
              render_set(dataset.model_path, "train", scene.loaded_iter, scene.getTrainCameras(), gaussians, pipeline, background, NSYSNVTX, CUDAEVENT)
 
         if not skip_test:
              render_set(dataset.model_path, "test", scene.loaded_iter, scene.getTestCameras(), gaussians, pipeline, background, NSYSNVTX, CUDAEVENT)
-
+        torch.cuda.cudart().cudaProfilerStop()#JWLB_20240206
         if NSYSNVTX == True:#JWLB_20240130
             torch.cuda.nvtx.range_pop()   #JWLB_20240130
         if CUDAEVENT == True:#JWLB_20240130            

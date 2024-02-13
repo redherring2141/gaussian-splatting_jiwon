@@ -32,6 +32,8 @@ namespace cg = cooperative_groups;
 
 //#include <tinylogger/tinylogger.h>//JWLB_20231226
 #include "nvToolsExt.h"	//JWLB_20240101
+#include <iostream>//JWLB_20240207
+#include <fstream>//JWLB_20240207
 
 // Helper function to find the next-highest bit of the MSB
 // on the CPU.
@@ -416,6 +418,24 @@ int CudaRasterizer::Rasterizer::forward(
 		imgState.n_contrib,
 		background,
 		out_color), debug)
+
+
+	uint32_t* host_n_contrib = new uint32_t[width * height];//JWLB_20240207
+	cudaMemcpy(host_n_contrib, imgState.n_contrib, sizeof(uint32_t) * width * height, cudaMemcpyDeviceToHost);//JWLB_20240207
+	//std::cout << "<width, height>= " << width << height << std::endl;//JWLB_20240207
+	std::ofstream outfile("heatmap_data.txt");
+	if (!outfile.is_open())
+	{
+		std::cerr << "Failed to open the file for writing." << std::endl;
+		return 1;
+	}
+	outfile << width << " " << height << "\n";
+	for(int i = 0; i<width*height; ++i)//JWLB_20240207
+		outfile << host_n_contrib[i] << "\n";
+	//	std::cout << host_n_contrib[i] << std::endl;//JWLB_20240207
+	outfile.close();
+
+	
 
 
 #ifdef _NSYSNVTX_

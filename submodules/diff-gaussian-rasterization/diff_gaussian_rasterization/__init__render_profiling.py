@@ -20,7 +20,7 @@ def cpu_deep_copy_tuple(input_tuple):
     copied_tensors = [item.cpu().clone() if isinstance(item, torch.Tensor) else item for item in input_tuple]
     return tuple(copied_tensors)
 
-def rasterize_gaussians(
+def Rasterize_gaussians(
     means3D,
     means2D,
     sh,
@@ -30,6 +30,8 @@ def rasterize_gaussians(
     rotations,
     cov3Ds_precomp,
     raster_settings,
+    NSYSNVTX,
+    CUDAEVENT
 ):
     return _RasterizeGaussians.apply(
         means3D,
@@ -41,6 +43,8 @@ def rasterize_gaussians(
         rotations,
         cov3Ds_precomp,
         raster_settings,
+        NSYSNVTX,
+        CUDAEVENT
     )
 
 class _RasterizeGaussians(torch.autograd.Function):
@@ -56,11 +60,16 @@ class _RasterizeGaussians(torch.autograd.Function):
         rotations,
         cov3Ds_precomp,
         raster_settings,
+        NSYSNVTX,
+        CUDAEVENT
     ):
-
-        torch.cuda.synchronize      #JWLB_20231226
-        torch.cuda.nvtx.range_push("[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]06prep_CUDArasterizer")   #JWLB_20240101
-        tt_prep_CUDArasterizer = time.time() #JWLB_20231226        
+        if NSYSNVTX == True:#JWLB_20240130
+            torch.cuda.nvtx.range_push("[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]09_1prep_CUDArasterizer")   #JWLB_20240101
+        if CUDAEVENT == True:#JWLB_20240130
+            starter, ender = torch.cuda.Event(enable_timing=True), torch.cuda.Event(enable_timing=True);#JWLB_20240112    
+            torch.cuda.synchronize()  #JWLB_20231226
+            starter.record()#JWLB_20240112
+        
 
         # Restructure arguments the way that the C++ lib expects them
         args = (
@@ -85,12 +94,12 @@ class _RasterizeGaussians(torch.autograd.Function):
             raster_settings.debug
         )
 
-        torch.cuda.synchronize          #JWLB_20231226
-        print(f'[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]06prep_CUDArasterizer: {(time.time()-tt_prep_CUDArasterizer)*1000}ms') #JWLB_20231226
-        torch.cuda.nvtx.range_pop()     #JWLB_20240101  
-        torch.cuda.nvtx.range_push("[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]18CUDArasterizer")   #JWLB_20240101
-        torch.cuda.synchronize          #JWLB_20231226
-        tt_CUDArasterizer = time.time() #JWLB_20231226
+        if NSYSNVTX == True:#JWLB_20240130
+            torch.cuda.nvtx.range_pop()   #JWLB_20240101
+            torch.cuda.nvtx.range_push("[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]10_1CUDArasterizer")   #JWLB_20240101
+        if CUDAEVENT == True:#JWLB_20240130
+            ender.record(); torch.cuda.synchronize(); print(f'[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]09_1prep_CUDArasterizer: {starter.elapsed_time(ender)}ms') #JWLB_20240112
+            starter.record()#JWLB_20240112
 
 
         # Invoke C++/CUDA rasterizer
@@ -105,9 +114,12 @@ class _RasterizeGaussians(torch.autograd.Function):
         else:
             num_rendered, color, radii, geomBuffer, binningBuffer, imgBuffer = _C.rasterize_gaussians(*args)
 
-        torch.cuda.synchronize          #JWLB_20231226
-        print(f'[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]18CUDArasterizer: {(time.time()-tt_CUDArasterizer)*1000}ms') #JWLB_20231226
-        torch.cuda.nvtx.range_pop()     #JWLB_20240101  
+
+        if NSYSNVTX == True:#JWLB_20240130
+            torch.cuda.nvtx.range_pop()   #JWLB_20240101
+        if CUDAEVENT == True:#JWLB_20240130
+            ender.record(); torch.cuda.synchronize(); print(f'[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]10_1CUDArasterizer: {starter.elapsed_time(ender)}ms') #JWLB_20240112
+
 
         # Keep relevant tensors for backward
         ctx.raster_settings = raster_settings
@@ -116,7 +128,14 @@ class _RasterizeGaussians(torch.autograd.Function):
         return color, radii
 
     @staticmethod
-    def backward(ctx, grad_out_color, _):
+    def backward(ctx, grad_out_color, _, NSYSNVTX=False, CUDAEVENT=False):
+        if NSYSNVTX == True:#JWLB_20240130
+            torch.cuda.nvtx.range_push("[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-backward]09_2prep_CUDArasterizer")   #JWLB_20240112
+        if CUDAEVENT == True:#JWLB_20240130
+            starter, ender = torch.cuda.Event(enable_timing=True), torch.cuda.Event(enable_timing=True);#JWLB_20240112    
+            torch.cuda.synchronize()  #JWLB_20231226
+            starter.record()#JWLB_20240112
+
 
         # Restore necessary values from context
         num_rendered = ctx.num_rendered
@@ -146,6 +165,15 @@ class _RasterizeGaussians(torch.autograd.Function):
                 imgBuffer,
                 raster_settings.debug)
 
+
+        if NSYSNVTX == True:#JWLB_20240130
+            torch.cuda.nvtx.range_pop()   #JWLB_20240101
+            torch.cuda.nvtx.range_push("[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-backward]10_2CUDArasterizer")   #JWLB_20240112
+        if CUDAEVENT == True:#JWLB_20240130
+            ender.record(); torch.cuda.synchronize(); print(f'[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-backward]09_2prep_CUDArasterizer: {starter.elapsed_time(ender)}ms') #JWLB_20240112
+            starter.record()#JWLB_20240112
+
+
         # Compute gradients for relevant tensors by invoking backward method
         if raster_settings.debug:
             cpu_args = cpu_deep_copy_tuple(args) # Copy them before they can be corrupted
@@ -157,6 +185,13 @@ class _RasterizeGaussians(torch.autograd.Function):
                 raise ex
         else:
              grad_means2D, grad_colors_precomp, grad_opacities, grad_means3D, grad_cov3Ds_precomp, grad_sh, grad_scales, grad_rotations = _C.rasterize_gaussians_backward(*args)
+
+
+        if NSYSNVTX == True:#JWLB_20240130
+            torch.cuda.nvtx.range_pop()   #JWLB_20240101
+        if CUDAEVENT == True:#JWLB_20240130
+            ender.record(); torch.cuda.synchronize(); print(f'[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-backward]10_2CUDArasterizer: {starter.elapsed_time(ender)}ms') #JWLB_20240112
+            
 
         grads = (
             grad_means3D,
@@ -187,11 +222,20 @@ class GaussianRasterizationSettings(NamedTuple):
     debug : bool
 
 class GaussianRasterizer(nn.Module):
-    def __init__(self, raster_settings):
+    #def __init__(self, raster_settings):
+    def __init__(self, raster_settings, NSYSNVTX, CUDAEVENT):        
         super().__init__()
         self.raster_settings = raster_settings
+        self.NSYSNVTX = NSYSNVTX
+        self.CUDAEVENT = CUDAEVENT
 
     def markVisible(self, positions):
+        starter, ender = torch.cuda.Event(enable_timing=True), torch.cuda.Event(enable_timing=True);#JWLB_20240112    
+        #torch.cuda.synchronize()      #JWLB_20240109
+        torch.cuda.nvtx.range_push("[JWLB-diff_gaussian_rasterization/__init__.py-GaussianRasterizer-markVisible]markVisible")   #JWLB_20240109       
+        #tt_markVisible = time.time() #JWLB_20240109
+        starter.record()#JWLB_20240112
+
         # Mark visible points (based on frustum culling for camera) with a boolean 
         with torch.no_grad():
             raster_settings = self.raster_settings
@@ -199,12 +243,21 @@ class GaussianRasterizer(nn.Module):
                 positions,
                 raster_settings.viewmatrix,
                 raster_settings.projmatrix)
+        #torch.cuda.synchronize()      #JWLB_20240109
+        #ender.record(); torch.cuda.synchronize(); print(f'[JWLB-diff_gaussian_rasterization/__init__.py-GaussianRasterizer-markVisible]markVisible: {(time.time()-tt_markVisible)*1000}ms') #JWLB_20240109
+        ender.record(); torch.cuda.synchronize(); print(f'[JWLB-diff_gaussian_rasterization/__init__.py-GaussianRasterizer-markVisible]markVisible: {starter.elapsed_time(ender)}ms') #JWLB_20240112
+        torch.cuda.nvtx.range_pop() #JWLB_20240109
+
         return visible
 
     def forward(self, means3D, means2D, opacities, shs = None, colors_precomp = None, scales = None, rotations = None, cov3D_precomp = None):
-        torch.cuda.synchronize      #JWLB_20231226
-        torch.cuda.nvtx.range_push("[JWLB-diff_gaussian_rasterization/__init__.py-GaussianRasterizer-forward]05forward")   #JWLB_20240101        
-        tt_forward = time.time() #JWLB_20231226
+    #def forward(self, means3D, means2D, opacities, shs = None, colors_precomp = None, scales = None, rotations = None, cov3D_precomp = None, NSYSNVTX = False, CUDAEVENT = False):
+        if self.NSYSNVTX == True:#JWLB_20240130
+            torch.cuda.nvtx.range_push("[JWLB-diff_gaussian_rasterization/__init__.py-GaussianRasterizer-forward]08prep_invokeCUDA")   #JWLB_20240101        
+        if self.CUDAEVENT == True:#JWLB_20240130
+            starter, ender = torch.cuda.Event(enable_timing=True), torch.cuda.Event(enable_timing=True);#JWLB_20240112    
+            torch.cuda.synchronize()  #JWLB_20231226
+            starter.record()#JWLB_20240112
                 
         raster_settings = self.raster_settings
 
@@ -226,12 +279,15 @@ class GaussianRasterizer(nn.Module):
         if cov3D_precomp is None:
             cov3D_precomp = torch.Tensor([])
 
-        torch.cuda.synchronize      #JWLB_20231226
-        print(f'[JWLB-diff_gaussian_rasterization/__init__.py-GaussianRasterizer-forward]05forward: {(time.time()-tt_forward)*1000}ms') #JWLB_20231226
-        torch.cuda.nvtx.range_pop() #JWLB_20240101
+
+        if self.NSYSNVTX == True:#JWLB_20240130
+            torch.cuda.nvtx.range_pop()   #JWLB_20240101
+        if self.CUDAEVENT == True:#JWLB_20240130
+            ender.record(); torch.cuda.synchronize(); print(f'[JWLB-diff_gaussian_rasterization/__init__.py-GaussianRasterizer-forward]08prep_invokeCUDA: {starter.elapsed_time(ender)}ms') #JWLB_20240112
+
  
         # Invoke C++/CUDA rasterization routine
-        return rasterize_gaussians(
+        return Rasterize_gaussians(
             means3D,
             means2D,
             shs,
@@ -240,6 +296,8 @@ class GaussianRasterizer(nn.Module):
             scales, 
             rotations,
             cov3D_precomp,
-            raster_settings, 
+            raster_settings,
+            self.NSYSNVTX,
+            self.CUDAEVENT
         )
 

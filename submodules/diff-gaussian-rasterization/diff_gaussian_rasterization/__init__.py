@@ -128,7 +128,7 @@ class _RasterizeGaussians(torch.autograd.Function):
         return color, radii
 
     @staticmethod
-    def backward(ctx, grad_out_color, _, NSYSNVTX, CUDAEVENT):
+    def backward(ctx, grad_out_color, _, NSYSNVTX=False, CUDAEVENT=False):
         if NSYSNVTX == True:#JWLB_20240130
             torch.cuda.nvtx.range_push("[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-backward]09_2prep_CUDArasterizer")   #JWLB_20240112
         if CUDAEVENT == True:#JWLB_20240130
