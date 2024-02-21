@@ -374,18 +374,18 @@ renderCUDA(
 			// pixel.
 			last_contributor = contributor;
 //			tmp = power;
+			
 		}
-
+		
 		//pix_tmp[i] = tmp;//JWLB_20240206
 	}
 
-	n_contrib[pix_id] = last_contributor;
 	// All threads that treat valid pixel write out their final
 	// rendering data to the frame and auxiliary buffers.
 	if (inside)
 	{
 		final_T[pix_id] = T;
-		//n_contrib[pix_id] = last_contributor;
+		n_contrib[pix_id] = last_contributor;
 		for (int ch = 0; ch < CHANNELS; ch++)
 			out_color[ch * H * W + pix_id] = C[ch] + T * bg_color[ch];
 			//out_color[ch * H * W + pix_id] = C[ch] + bg_color[ch];
