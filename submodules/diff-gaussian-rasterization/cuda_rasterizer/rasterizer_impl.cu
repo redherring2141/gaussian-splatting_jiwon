@@ -419,7 +419,7 @@ int CudaRasterizer::Rasterizer::forward(
 		background,
 		out_color), debug)
 
-
+	/*
 	uint32_t* host_n_contrib = new uint32_t[width * height];//JWLB_20240207
 	cudaMemcpy(host_n_contrib, imgState.n_contrib, sizeof(uint32_t) * width * height, cudaMemcpyDeviceToHost);//JWLB_20240207
 	//std::cout << "<width, height>= " << width << height << std::endl;//JWLB_20240207
@@ -434,6 +434,7 @@ int CudaRasterizer::Rasterizer::forward(
 		outfile << host_n_contrib[i] << "\n";
 	//	std::cout << host_n_contrib[i] << std::endl;//JWLB_20240207
 	outfile.close();
+	*/
 
 	
 

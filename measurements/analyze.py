@@ -48,11 +48,15 @@ for line in lines:
         '''
         metrics[function_name].append(float(value))
 
+with open("summary.txt", "a") as summary:
+    for m in metrics:
+        summary.write("<{}>_{}: {}\n".format(file_name[89:], m, sum(metrics[m])))
 
+'''
 print("<Total>")
 for m in metrics:
     print("{}: {}".format(m, sum(metrics[m])))
-'''
+
 print("<Average>")
 for m in metrics:
     print("{}: {}".format(m, sum(metrics[m])/len(metrics[m])))
