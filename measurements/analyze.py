@@ -48,7 +48,7 @@ for line in lines:
         '''
         metrics[function_name].append(float(value))
 
-with open("summary.txt", "a") as summary:
+with open("summary_exp.txt", "a") as summary:
     for m in metrics:
         summary.write("<{}>_{}: {}\n".format(file_name[89:], m, sum(metrics[m])))
 
