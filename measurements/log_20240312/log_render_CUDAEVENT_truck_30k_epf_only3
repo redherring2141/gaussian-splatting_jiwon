@@ -1,0 +1,461 @@
+Looking for config file in ../output_full/truck_30k/cfg_args
+Config file found: ../output_full/truck_30k/cfg_args
+Rendering ../output_full/truck_30k/
+[JWLB-render.py-main]01Initialize_system_state(RNG): 0.20684799551963806ms [12/03 20:10:53]
+Loading trained model at iteration 30000 [12/03 20:10:53]
+Reading camera 1/251Reading camera 2/251Reading camera 3/251Reading camera 4/251Reading camera 5/251Reading camera 6/251Reading camera 7/251Reading camera 8/251Reading camera 9/251Reading camera 10/251Reading camera 11/251Reading camera 12/251Reading camera 13/251Reading camera 14/251Reading camera 15/251Reading camera 16/251Reading camera 17/251Reading camera 18/251Reading camera 19/251Reading camera 20/251Reading camera 21/251Reading camera 22/251Reading camera 23/251Reading camera 24/251Reading camera 25/251Reading camera 26/251Reading camera 27/251Reading camera 28/251Reading camera 29/251Reading camera 30/251Reading camera 31/251Reading camera 32/251Reading camera 33/251Reading camera 34/251Reading camera 35/251Reading camera 36/251Reading camera 37/251Reading camera 38/251Reading camera 39/251Reading camera 40/251Reading camera 41/251Reading camera 42/251Reading camera 43/251Reading camera 44/251Reading camera 45/251Reading camera 46/251Reading camera 47/251Reading camera 48/251Reading camera 49/251Reading camera 50/251Reading camera 51/251Reading camera 52/251Reading camera 53/251Reading camera 54/251Reading camera 55/251Reading camera 56/251Reading camera 57/251Reading camera 58/251Reading camera 59/251Reading camera 60/251Reading camera 61/251Reading camera 62/251Reading camera 63/251Reading camera 64/251Reading camera 65/251Reading camera 66/251Reading camera 67/251Reading camera 68/251Reading camera 69/251Reading camera 70/251Reading camera 71/251Reading camera 72/251Reading camera 73/251Reading camera 74/251Reading camera 75/251Reading camera 76/251Reading camera 77/251Reading camera 78/251Reading camera 79/251Reading camera 80/251Reading camera 81/251Reading camera 82/251Reading camera 83/251Reading camera 84/251Reading camera 85/251Reading camera 86/251Reading camera 87/251Reading camera 88/251Reading camera 89/251Reading camera 90/251Reading camera 91/251Reading camera 92/251Reading camera 93/251Reading camera 94/251Reading camera 95/251Reading camera 96/251Reading camera 97/251Reading camera 98/251Reading camera 99/251Reading camera 100/251Reading camera 101/251Reading camera 102/251Reading camera 103/251Reading camera 104/251Reading camera 105/251Reading camera 106/251Reading camera 107/251Reading camera 108/251Reading camera 109/251Reading camera 110/251Reading camera 111/251Reading camera 112/251Reading camera 113/251Reading camera 114/251Reading camera 115/251Reading camera 116/251Reading camera 117/251Reading camera 118/251Reading camera 119/251Reading camera 120/251Reading camera 121/251Reading camera 122/251Reading camera 123/251Reading camera 124/251Reading camera 125/251Reading camera 126/251Reading camera 127/251Reading camera 128/251Reading camera 129/251Reading camera 130/251Reading camera 131/251Reading camera 132/251Reading camera 133/251Reading camera 134/251Reading camera 135/251Reading camera 136/251Reading camera 137/251Reading camera 138/251Reading camera 139/251Reading camera 140/251Reading camera 141/251Reading camera 142/251Reading camera 143/251Reading camera 144/251Reading camera 145/251Reading camera 146/251Reading camera 147/251Reading camera 148/251Reading camera 149/251Reading camera 150/251Reading camera 151/251Reading camera 152/251Reading camera 153/251Reading camera 154/251Reading camera 155/251Reading camera 156/251Reading camera 157/251Reading camera 158/251Reading camera 159/251Reading camera 160/251Reading camera 161/251Reading camera 162/251Reading camera 163/251Reading camera 164/251Reading camera 165/251Reading camera 166/251Reading camera 167/251Reading camera 168/251Reading camera 169/251Reading camera 170/251Reading camera 171/251Reading camera 172/251Reading camera 173/251Reading camera 174/251Reading camera 175/251Reading camera 176/251Reading camera 177/251Reading camera 178/251Reading camera 179/251Reading camera 180/251Reading camera 181/251Reading camera 182/251Reading camera 183/251Reading camera 184/251Reading camera 185/251Reading camera 186/251Reading camera 187/251Reading camera 188/251Reading camera 189/251Reading camera 190/251Reading camera 191/251Reading camera 192/251Reading camera 193/251Reading camera 194/251Reading camera 195/251Reading camera 196/251Reading camera 197/251Reading camera 198/251Reading camera 199/251Reading camera 200/251Reading camera 201/251Reading camera 202/251Reading camera 203/251Reading camera 204/251Reading camera 205/251Reading camera 206/251Reading camera 207/251Reading camera 208/251Reading camera 209/251Reading camera 210/251Reading camera 211/251Reading camera 212/251Reading camera 213/251Reading camera 214/251Reading camera 215/251Reading camera 216/251Reading camera 217/251Reading camera 218/251Reading camera 219/251Reading camera 220/251Reading camera 221/251Reading camera 222/251Reading camera 223/251Reading camera 224/251Reading camera 225/251Reading camera 226/251Reading camera 227/251Reading camera 228/251Reading camera 229/251Reading camera 230/251Reading camera 231/251Reading camera 232/251Reading camera 233/251Reading camera 234/251Reading camera 235/251Reading camera 236/251Reading camera 237/251Reading camera 238/251Reading camera 239/251Reading camera 240/251Reading camera 241/251Reading camera 242/251Reading camera 243/251Reading camera 244/251Reading camera 245/251Reading camera 246/251Reading camera 247/251Reading camera 248/251Reading camera 249/251Reading camera 250/251Reading camera 251/251 [12/03 20:10:55]
+Loading Training Cameras [12/03 20:10:55]
+Loading Test Cameras [12/03 20:11:01]
+[JWLB-render.py-render_sets]02prep_render_set: 10862.1318359375ms [12/03 20:11:04]
+[JWLB-render.py-render_set]03prep_render: 0.16896000504493713ms [12/03 20:11:04]
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]11CUDAengine_prep_forward: 0.135168ms
+[JWLB-rasterizer_impl.cu-forward]13CUDAengine_preprocess: 3.1488ms
+[JWLB-rasterizer_impl.cu-forward]14CUDAengine_InclusiveSum: 0.08224ms
+[JWLB-rasterizer_impl.cu-forward]15CUDAengine_BinningStatefromChunk: 0.29344ms
+[JWLB-rasterizer_impl.cu-forward]16CUDAengine_duplicateWithKeys: 0.263776ms
+[JWLB-rasterizer_impl.cu-forward]17CUDAengine_sortGaussianIndexKeys: 0.69632ms
+[JWLB-rasterizer_impl.cu-forward]18CUDAengine_identifyTileRanges: 0.0512ms
+[JWLB-rasterizer_impl.cu-forward]19CUDAengine_blendInOrder: 3.1703ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]12CUDAengine_forward: 7.93498ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]11CUDAengine_prep_forward: 0.055296ms
+[JWLB-rasterizer_impl.cu-forward]13CUDAengine_preprocess: 0.48128ms
+[JWLB-rasterizer_impl.cu-forward]14CUDAengine_InclusiveSum: 0.051968ms
+[JWLB-rasterizer_impl.cu-forward]15CUDAengine_BinningStatefromChunk: 0.014336ms
+[JWLB-rasterizer_impl.cu-forward]16CUDAengine_duplicateWithKeys: 0.273024ms
+[JWLB-rasterizer_impl.cu-forward]17CUDAengine_sortGaussianIndexKeys: 0.700416ms
+[JWLB-rasterizer_impl.cu-forward]18CUDAengine_identifyTileRanges: 0.049152ms
+[JWLB-rasterizer_impl.cu-forward]19CUDAengine_blendInOrder: 2.95731ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]12CUDAengine_forward: 4.70528ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]11CUDAengine_prep_forward: 0.050176ms
+[JWLB-rasterizer_impl.cu-forward]13CUDAengine_preprocess: 0.477184ms
+[JWLB-rasterizer_impl.cu-forward]14CUDAengine_InclusiveSum: 0.048288ms
+[JWLB-rasterizer_impl.cu-forward]15CUDAengine_BinningStatefromChunk: 0.01344ms
+[JWLB-rasterizer_impl.cu-forward]16CUDAengine_duplicateWithKeys: 0.293152ms
+[JWLB-rasterizer_impl.cu-forward]17CUDAengine_sortGaussianIndexKeys: 0.739328ms
+[JWLB-rasterizer_impl.cu-forward]18CUDAengine_identifyTileRanges: 0.053248ms
+[JWLB-rasterizer_impl.cu-forward]19CUDAengine_blendInOrder: 2.64704ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]12CUDAengine_forward: 4.4544ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]11CUDAengine_prep_forward: 0.050176ms
+[JWLB-rasterizer_impl.cu-forward]13CUDAengine_preprocess: 0.39424ms
+[JWLB-rasterizer_impl.cu-forward]14CUDAengine_InclusiveSum: 0.050848ms
+[JWLB-rasterizer_impl.cu-forward]15CUDAengine_BinningStatefromChunk: 0.01344ms
+[JWLB-rasterizer_impl.cu-forward]16CUDAengine_duplicateWithKeys: 0.267648ms
+[JWLB-rasterizer_impl.cu-forward]17CUDAengine_sortGaussianIndexKeys: 0.613376ms
+[JWLB-rasterizer_impl.cu-forward]18CUDAengine_identifyTileRanges: 0.044032ms
+[JWLB-rasterizer_impl.cu-forward]19CUDAengine_blendInOrder: 2.06848ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]12CUDAengine_forward: 3.61677ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]11CUDAengine_prep_forward: 0.050176ms
+[JWLB-rasterizer_impl.cu-forward]13CUDAengine_preprocess: 0.453632ms
+[JWLB-rasterizer_impl.cu-forward]14CUDAengine_InclusiveSum: 0.050976ms
+[JWLB-rasterizer_impl.cu-forward]15CUDAengine_BinningStatefromChunk: 0.309056ms
+[JWLB-rasterizer_impl.cu-forward]16CUDAengine_duplicateWithKeys: 0.320256ms
+[JWLB-rasterizer_impl.cu-forward]17CUDAengine_sortGaussianIndexKeys: 0.756736ms
+[JWLB-rasterizer_impl.cu-forward]18CUDAengine_identifyTileRanges: 0.053248ms
+[JWLB-rasterizer_impl.cu-forward]19CUDAengine_blendInOrder: 2.79552ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]12CUDAengine_forward: 4.91827ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]11CUDAengine_prep_forward: 0.048128ms
+[JWLB-rasterizer_impl.cu-forward]13CUDAengine_preprocess: 0.434176ms
+[JWLB-rasterizer_impl.cu-forward]14CUDAengine_InclusiveSum: 0.059008ms
+[JWLB-rasterizer_impl.cu-forward]15CUDAengine_BinningStatefromChunk: 0.014048ms
+[JWLB-rasterizer_impl.cu-forward]16CUDAengine_duplicateWithKeys: 0.29024ms
+[JWLB-rasterizer_impl.cu-forward]17CUDAengine_sortGaussianIndexKeys: 0.668672ms
+[JWLB-rasterizer_impl.cu-forward]18CUDAengine_identifyTileRanges: 0.047104ms
+[JWLB-rasterizer_impl.cu-forward]19CUDAengine_blendInOrder: 2.71462ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]12CUDAengine_forward: 4.4032ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]11CUDAengine_prep_forward: 0.065536ms
+[JWLB-rasterizer_impl.cu-forward]13CUDAengine_preprocess: 0.439296ms
+[JWLB-rasterizer_impl.cu-forward]14CUDAengine_InclusiveSum: 0.05664ms
+[JWLB-rasterizer_impl.cu-forward]15CUDAengine_BinningStatefromChunk: 0.013664ms
+[JWLB-rasterizer_impl.cu-forward]16CUDAengine_duplicateWithKeys: 0.266112ms
+[JWLB-rasterizer_impl.cu-forward]17CUDAengine_sortGaussianIndexKeys: 0.638976ms
+[JWLB-rasterizer_impl.cu-forward]18CUDAengine_identifyTileRanges: 0.052224ms
+[JWLB-rasterizer_impl.cu-forward]19CUDAengine_blendInOrder: 2.33267ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]12CUDAengine_forward: 3.96493ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]11CUDAengine_prep_forward: 0.048128ms
+[JWLB-rasterizer_impl.cu-forward]13CUDAengine_preprocess: 0.47616ms
+[JWLB-rasterizer_impl.cu-forward]14CUDAengine_InclusiveSum: 0.062048ms
+[JWLB-rasterizer_impl.cu-forward]15CUDAengine_BinningStatefromChunk: 0.014624ms
+[JWLB-rasterizer_impl.cu-forward]16CUDAengine_duplicateWithKeys: 0.302912ms
+[JWLB-rasterizer_impl.cu-forward]17CUDAengine_sortGaussianIndexKeys: 0.763904ms
+[JWLB-rasterizer_impl.cu-forward]18CUDAengine_identifyTileRanges: 0.054272ms
+[JWLB-rasterizer_impl.cu-forward]19CUDAengine_blendInOrder: 3.30445ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]12CUDAengine_forward: 5.15379ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]11CUDAengine_prep_forward: 0.055296ms
+[JWLB-rasterizer_impl.cu-forward]13CUDAengine_preprocess: 0.473088ms
+[JWLB-rasterizer_impl.cu-forward]14CUDAengine_InclusiveSum: 0.052768ms
+[JWLB-rasterizer_impl.cu-forward]15CUDAengine_BinningStatefromChunk: 0.01376ms
+[JWLB-rasterizer_impl.cu-forward]16CUDAengine_duplicateWithKeys: 0.295808ms
+[JWLB-rasterizer_impl.cu-forward]17CUDAengine_sortGaussianIndexKeys: 0.73216ms
+[JWLB-rasterizer_impl.cu-forward]18CUDAengine_identifyTileRanges: 0.052224ms
+[JWLB-rasterizer_impl.cu-forward]19CUDAengine_blendInOrder: 3.5584ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]12CUDAengine_forward: 5.34938ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]11CUDAengine_prep_forward: 0.048128ms
+[JWLB-rasterizer_impl.cu-forward]13CUDAengine_preprocess: 0.396288ms
+[JWLB-rasterizer_impl.cu-forward]14CUDAengine_InclusiveSum: 0.049216ms
+[JWLB-rasterizer_impl.cu-forward]15CUDAengine_BinningStatefromChunk: 0.014048ms
+[JWLB-rasterizer_impl.cu-forward]16CUDAengine_duplicateWithKeys: 0.266304ms
+[JWLB-rasterizer_impl.cu-forward]17CUDAengine_sortGaussianIndexKeys: 0.623616ms
+[JWLB-rasterizer_impl.cu-forward]18CUDAengine_identifyTileRanges: 0.045056ms
+[JWLB-rasterizer_impl.cu-forward]19CUDAengine_blendInOrder: 2.4832ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]12CUDAengine_forward: 4.04685ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]11CUDAengine_prep_forward: 0.048128ms
+[JWLB-rasterizer_impl.cu-forward]13CUDAengine_preprocess: 0.427008ms
+[JWLB-rasterizer_impl.cu-forward]14CUDAengine_InclusiveSum: 0.056544ms
+[JWLB-rasterizer_impl.cu-forward]15CUDAengine_BinningStatefromChunk: 0.013632ms
+[JWLB-rasterizer_impl.cu-forward]16CUDAengine_duplicateWithKeys: 0.2304ms
+[JWLB-rasterizer_impl.cu-forward]17CUDAengine_sortGaussianIndexKeys: 0.56832ms
+[JWLB-rasterizer_impl.cu-forward]18CUDAengine_identifyTileRanges: 0.039936ms
+[JWLB-rasterizer_impl.cu-forward]19CUDAengine_blendInOrder: 2.40128ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]12CUDAengine_forward: 3.90349ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]11CUDAengine_prep_forward: 0.049152ms
+[JWLB-rasterizer_impl.cu-forward]13CUDAengine_preprocess: 0.447488ms
+[JWLB-rasterizer_impl.cu-forward]14CUDAengine_InclusiveSum: 0.056928ms
+[JWLB-rasterizer_impl.cu-forward]15CUDAengine_BinningStatefromChunk: 0.014304ms
+[JWLB-rasterizer_impl.cu-forward]16CUDAengine_duplicateWithKeys: 0.268512ms
+[JWLB-rasterizer_impl.cu-forward]17CUDAengine_sortGaussianIndexKeys: 0.667648ms
+[JWLB-rasterizer_impl.cu-forward]18CUDAengine_identifyTileRanges: 0.049152ms
+[JWLB-rasterizer_impl.cu-forward]19CUDAengine_blendInOrder: 2.73101ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]12CUDAengine_forward: 4.40115ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]11CUDAengine_prep_forward: 0.050176ms
+[JWLB-rasterizer_impl.cu-forward]13CUDAengine_preprocess: 0.457728ms
+[JWLB-rasterizer_impl.cu-forward]14CUDAengine_InclusiveSum: 0.04944ms
+[JWLB-rasterizer_impl.cu-forward]15CUDAengine_BinningStatefromChunk: 0.01392ms
+[JWLB-rasterizer_impl.cu-forward]16CUDAengine_duplicateWithKeys: 0.30032ms
+[JWLB-rasterizer_impl.cu-forward]17CUDAengine_sortGaussianIndexKeys: 0.6912ms
+[JWLB-rasterizer_impl.cu-forward]18CUDAengine_identifyTileRanges: 0.049152ms
+[JWLB-rasterizer_impl.cu-forward]19CUDAengine_blendInOrder: 2.56307ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]12CUDAengine_forward: 4.29158ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]11CUDAengine_prep_forward: 0.047104ms
+[JWLB-rasterizer_impl.cu-forward]13CUDAengine_preprocess: 0.47104ms
+[JWLB-rasterizer_impl.cu-forward]14CUDAengine_InclusiveSum: 0.049248ms
+[JWLB-rasterizer_impl.cu-forward]15CUDAengine_BinningStatefromChunk: 0.013728ms
+[JWLB-rasterizer_impl.cu-forward]16CUDAengine_duplicateWithKeys: 0.240224ms
+[JWLB-rasterizer_impl.cu-forward]17CUDAengine_sortGaussianIndexKeys: 0.64ms
+[JWLB-rasterizer_impl.cu-forward]18CUDAengine_identifyTileRanges: 0.047104ms
+[JWLB-rasterizer_impl.cu-forward]19CUDAengine_blendInOrder: 2.88256ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]12CUDAengine_forward: 4.50867ms
+[JWLB-gaussian_renderer/__init__.py-render]06prep_rasterizer: 4.6387200355529785ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-GaussianRasterizer-forward]08prep_invokeCUDA: 0.06758400052785873ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]09_1prep_CUDArasterizer: 0.025599999353289604ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]10_1CUDArasterizer: 8.18995189666748ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]07rasterizer: 8.600576400756836ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]06prep_rasterizer: 3.072000026702881ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-GaussianRasterizer-forward]08prep_invokeCUDA: 0.05734400078654289ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]09_1prep_CUDArasterizer: 0.020479999482631683ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]10_1CUDArasterizer: 4.841472148895264ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]07rasterizer: 5.135359764099121ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]06prep_rasterizer: 2.8815360069274902ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-GaussianRasterizer-forward]08prep_invokeCUDA: 0.03174399957060814ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]09_1prep_CUDArasterizer: 0.01945599913597107ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]10_1CUDArasterizer: 4.582399845123291ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]07rasterizer: 4.841472148895264ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]06prep_rasterizer: 2.8733439445495605ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-GaussianRasterizer-forward]08prep_invokeCUDA: 0.03174399957060814ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]09_1prep_CUDArasterizer: 0.018432000651955605ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]10_1CUDArasterizer: 3.744767904281616ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]07rasterizer: 3.999743938446045ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]06prep_rasterizer: 2.8784639835357666ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-GaussianRasterizer-forward]08prep_invokeCUDA: 0.030719999223947525ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]09_1prep_CUDArasterizer: 0.018432000651955605ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]10_1CUDArasterizer: 5.047296047210693ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]07rasterizer: 5.305344104766846ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]06prep_rasterizer: 2.879487991333008ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-GaussianRasterizer-forward]08prep_invokeCUDA: 0.03174399957060814ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]09_1prep_CUDArasterizer: 0.018432000651955605ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]10_1CUDArasterizer: 4.531199932098389ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]07rasterizer: 4.793344020843506ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]06prep_rasterizer: 2.8723199367523193ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-GaussianRasterizer-forward]08prep_invokeCUDA: 0.030719999223947525ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]09_1prep_CUDArasterizer: 0.01945599913597107ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]10_1CUDArasterizer: 4.109312057495117ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]07rasterizer: 4.366335868835449ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]06prep_rasterizer: 2.900991916656494ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-GaussianRasterizer-forward]08prep_invokeCUDA: 0.030719999223947525ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]09_1prep_CUDArasterizer: 0.018432000651955605ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]10_1CUDArasterizer: 5.2797441482543945ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]07rasterizer: 5.534719944000244ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]06prep_rasterizer: 2.8631041049957275ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-GaussianRasterizer-forward]08prep_invokeCUDA: 0.030719999223947525ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]09_1prep_CUDArasterizer: 0.018432000651955605ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]10_1CUDArasterizer: 5.483520030975342ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]07rasterizer: 5.738495826721191ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]06prep_rasterizer: 2.8692479133605957ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-GaussianRasterizer-forward]08prep_invokeCUDA: 0.03174399957060814ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]09_1prep_CUDArasterizer: 0.01740800030529499ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]10_1CUDArasterizer: 4.175871849060059ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]07rasterizer: 4.427775859832764ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]06prep_rasterizer: 2.8671998977661133ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-GaussianRasterizer-forward]08prep_invokeCUDA: 0.03174399957060814ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]09_1prep_CUDArasterizer: 0.018432000651955605ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]10_1CUDArasterizer: 4.031487941741943ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]07rasterizer: 4.30182409286499ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]06prep_rasterizer: 2.875391960144043ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-GaussianRasterizer-forward]08prep_invokeCUDA: 0.030719999223947525ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]09_1prep_CUDArasterizer: 0.018432000651955605ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]10_1CUDArasterizer: 4.543488025665283ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]07rasterizer: 4.79641580581665ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]06prep_rasterizer: 2.884608030319214ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-GaussianRasterizer-forward]08prep_invokeCUDA: 0.030719999223947525ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]09_1prep_CUDArasterizer: 0.018432000651955605ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]10_1CUDArasterizer: 4.424704074859619ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]07rasterizer: 4.687871932983398ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]06prep_rasterizer: 2.870271921157837ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-GaussianRasterizer-forward]08prep_invokeCUDA: 0.030719999223947525ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]09_1prep_CUDArasterizer: 0.018432000651955605ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]10_1CUDArasterizer: 4.634624004364014ms[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]11CUDAengine_prep_forward: 0.049152ms
+[JWLB-rasterizer_impl.cu-forward]13CUDAengine_preprocess: 0.480256ms
+[JWLB-rasterizer_impl.cu-forward]14CUDAengine_InclusiveSum: 0.049344ms
+[JWLB-rasterizer_impl.cu-forward]15CUDAengine_BinningStatefromChunk: 0.013472ms
+[JWLB-rasterizer_impl.cu-forward]16CUDAengine_duplicateWithKeys: 0.22992ms
+[JWLB-rasterizer_impl.cu-forward]17CUDAengine_sortGaussianIndexKeys: 0.618496ms
+[JWLB-rasterizer_impl.cu-forward]18CUDAengine_identifyTileRanges: 0.04608ms
+[JWLB-rasterizer_impl.cu-forward]19CUDAengine_blendInOrder: 3.71814ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]12CUDAengine_forward: 5.33197ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]11CUDAengine_prep_forward: 0.045056ms
+[JWLB-rasterizer_impl.cu-forward]13CUDAengine_preprocess: 0.474112ms
+[JWLB-rasterizer_impl.cu-forward]14CUDAengine_InclusiveSum: 0.053824ms
+[JWLB-rasterizer_impl.cu-forward]15CUDAengine_BinningStatefromChunk: 0.013344ms
+[JWLB-rasterizer_impl.cu-forward]16CUDAengine_duplicateWithKeys: 0.226336ms
+[JWLB-rasterizer_impl.cu-forward]17CUDAengine_sortGaussianIndexKeys: 0.600064ms
+[JWLB-rasterizer_impl.cu-forward]18CUDAengine_identifyTileRanges: 0.043008ms
+[JWLB-rasterizer_impl.cu-forward]19CUDAengine_blendInOrder: 4.18816ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]12CUDAengine_forward: 5.75283ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]11CUDAengine_prep_forward: 0.04608ms
+[JWLB-rasterizer_impl.cu-forward]13CUDAengine_preprocess: 0.462848ms
+[JWLB-rasterizer_impl.cu-forward]14CUDAengine_InclusiveSum: 0.050048ms
+[JWLB-rasterizer_impl.cu-forward]15CUDAengine_BinningStatefromChunk: 0.013024ms
+[JWLB-rasterizer_impl.cu-forward]16CUDAengine_duplicateWithKeys: 0.226144ms
+[JWLB-rasterizer_impl.cu-forward]17CUDAengine_sortGaussianIndexKeys: 0.590848ms
+[JWLB-rasterizer_impl.cu-forward]18CUDAengine_identifyTileRanges: 0.041984ms
+[JWLB-rasterizer_impl.cu-forward]19CUDAengine_blendInOrder: 3.98438ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]12CUDAengine_forward: 5.52243ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]11CUDAengine_prep_forward: 0.045056ms
+[JWLB-rasterizer_impl.cu-forward]13CUDAengine_preprocess: 0.431104ms
+[JWLB-rasterizer_impl.cu-forward]14CUDAengine_InclusiveSum: 0.049312ms
+[JWLB-rasterizer_impl.cu-forward]15CUDAengine_BinningStatefromChunk: 0.013952ms
+[JWLB-rasterizer_impl.cu-forward]16CUDAengine_duplicateWithKeys: 0.274976ms
+[JWLB-rasterizer_impl.cu-forward]17CUDAengine_sortGaussianIndexKeys: 0.661504ms
+[JWLB-rasterizer_impl.cu-forward]18CUDAengine_identifyTileRanges: 0.048128ms
+[JWLB-rasterizer_impl.cu-forward]19CUDAengine_blendInOrder: 2.56922ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]12CUDAengine_forward: 4.20557ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]11CUDAengine_prep_forward: 0.04608ms
+[JWLB-rasterizer_impl.cu-forward]13CUDAengine_preprocess: 0.4352ms
+[JWLB-rasterizer_impl.cu-forward]14CUDAengine_InclusiveSum: 0.045856ms
+[JWLB-rasterizer_impl.cu-forward]15CUDAengine_BinningStatefromChunk: 0.012512ms
+[JWLB-rasterizer_impl.cu-forward]16CUDAengine_duplicateWithKeys: 0.28608ms
+[JWLB-rasterizer_impl.cu-forward]17CUDAengine_sortGaussianIndexKeys: 0.681984ms
+[JWLB-rasterizer_impl.cu-forward]18CUDAengine_identifyTileRanges: 0.048128ms
+[JWLB-rasterizer_impl.cu-forward]19CUDAengine_blendInOrder: 2.47398ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]12CUDAengine_forward: 4.13491ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]11CUDAengine_prep_forward: 0.04608ms
+[JWLB-rasterizer_impl.cu-forward]13CUDAengine_preprocess: 0.403456ms
+[JWLB-rasterizer_impl.cu-forward]14CUDAengine_InclusiveSum: 0.045952ms
+[JWLB-rasterizer_impl.cu-forward]15CUDAengine_BinningStatefromChunk: 0.01296ms
+[JWLB-rasterizer_impl.cu-forward]16CUDAengine_duplicateWithKeys: 0.318464ms
+[JWLB-rasterizer_impl.cu-forward]17CUDAengine_sortGaussianIndexKeys: 0.714752ms
+[JWLB-rasterizer_impl.cu-forward]18CUDAengine_identifyTileRanges: 0.0512ms
+[JWLB-rasterizer_impl.cu-forward]19CUDAengine_blendInOrder: 2.68902ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]12CUDAengine_forward: 4.39091ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]11CUDAengine_prep_forward: 0.04608ms
+[JWLB-rasterizer_impl.cu-forward]13CUDAengine_preprocess: 0.393216ms
+[JWLB-rasterizer_impl.cu-forward]14CUDAengine_InclusiveSum: 0.0552ms
+[JWLB-rasterizer_impl.cu-forward]15CUDAengine_BinningStatefromChunk: 0.012704ms
+[JWLB-rasterizer_impl.cu-forward]16CUDAengine_duplicateWithKeys: 0.271264ms
+[JWLB-rasterizer_impl.cu-forward]17CUDAengine_sortGaussianIndexKeys: 0.64ms
+[JWLB-rasterizer_impl.cu-forward]18CUDAengine_identifyTileRanges: 0.045056ms
+[JWLB-rasterizer_impl.cu-forward]19CUDAengine_blendInOrder: 2.8416ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]12CUDAengine_forward: 4.42368ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]11CUDAengine_prep_forward: 0.045056ms
+[JWLB-rasterizer_impl.cu-forward]13CUDAengine_preprocess: 0.39936ms
+[JWLB-rasterizer_impl.cu-forward]14CUDAengine_InclusiveSum: 0.049632ms
+[JWLB-rasterizer_impl.cu-forward]15CUDAengine_BinningStatefromChunk: 0.013248ms
+[JWLB-rasterizer_impl.cu-forward]16CUDAengine_duplicateWithKeys: 0.285728ms
+[JWLB-rasterizer_impl.cu-forward]17CUDAengine_sortGaussianIndexKeys: 0.673792ms
+[JWLB-rasterizer_impl.cu-forward]18CUDAengine_identifyTileRanges: 0.048128ms
+[JWLB-rasterizer_impl.cu-forward]19CUDAengine_blendInOrder: 2.57843ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]12CUDAengine_forward: 4.19942ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]11CUDAengine_prep_forward: 0.052224ms
+[JWLB-rasterizer_impl.cu-forward]13CUDAengine_preprocess: 0.43008ms
+[JWLB-rasterizer_impl.cu-forward]14CUDAengine_InclusiveSum: 0.049536ms
+[JWLB-rasterizer_impl.cu-forward]15CUDAengine_BinningStatefromChunk: 0.01248ms
+[JWLB-rasterizer_impl.cu-forward]16CUDAengine_duplicateWithKeys: 0.263488ms
+[JWLB-rasterizer_impl.cu-forward]17CUDAengine_sortGaussianIndexKeys: 0.647168ms
+[JWLB-rasterizer_impl.cu-forward]18CUDAengine_identifyTileRanges: 0.047104ms
+[JWLB-rasterizer_impl.cu-forward]19CUDAengine_blendInOrder: 2.58048ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]12CUDAengine_forward: 4.18816ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]11CUDAengine_prep_forward: 0.04608ms
+[JWLB-rasterizer_impl.cu-forward]13CUDAengine_preprocess: 0.417792ms
+[JWLB-rasterizer_impl.cu-forward]14CUDAengine_InclusiveSum: 0.048768ms
+[JWLB-rasterizer_impl.cu-forward]15CUDAengine_BinningStatefromChunk: 0.014048ms
+[JWLB-rasterizer_impl.cu-forward]16CUDAengine_duplicateWithKeys: 0.235712ms
+[JWLB-rasterizer_impl.cu-forward]17CUDAengine_sortGaussianIndexKeys: 0.5888ms
+[JWLB-rasterizer_impl.cu-forward]18CUDAengine_identifyTileRanges: 0.041984ms
+[JWLB-rasterizer_impl.cu-forward]19CUDAengine_blendInOrder: 4.06016ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]12CUDAengine_forward: 5.56134ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]11CUDAengine_prep_forward: 0.047104ms
+[JWLB-rasterizer_impl.cu-forward]13CUDAengine_preprocess: 0.390144ms
+[JWLB-rasterizer_impl.cu-forward]14CUDAengine_InclusiveSum: 0.051488ms
+[JWLB-rasterizer_impl.cu-forward]15CUDAengine_BinningStatefromChunk: 0.012384ms
+[JWLB-rasterizer_impl.cu-forward]16CUDAengine_duplicateWithKeys: 0.252ms
+[JWLB-rasterizer_impl.cu-forward]17CUDAengine_sortGaussianIndexKeys: 0.59904ms
+[JWLB-rasterizer_impl.cu-forward]18CUDAengine_identifyTileRanges: 0.043008ms
+[JWLB-rasterizer_impl.cu-forward]19CUDAengine_blendInOrder: 3.50515ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]12CUDAengine_forward: 5.00634ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]11CUDAengine_prep_forward: 0.045056ms
+[JWLB-rasterizer_impl.cu-forward]13CUDAengine_preprocess: 0.452608ms
+[JWLB-rasterizer_impl.cu-forward]14CUDAengine_InclusiveSum: 0.0568ms
+[JWLB-rasterizer_impl.cu-forward]15CUDAengine_BinningStatefromChunk: 0.01376ms
+[JWLB-rasterizer_impl.cu-forward]16CUDAengine_duplicateWithKeys: 0.25312ms
+[JWLB-rasterizer_impl.cu-forward]17CUDAengine_sortGaussianIndexKeys: 0.628736ms
+[JWLB-rasterizer_impl.cu-forward]18CUDAengine_identifyTileRanges: 0.045056ms
+[JWLB-rasterizer_impl.cu-forward]19CUDAengine_blendInOrder: 2.70029ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]12CUDAengine_forward: 4.30592ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]11CUDAengine_prep_forward: 0.0512ms
+[JWLB-rasterizer_impl.cu-forward]13CUDAengine_preprocess: 0.417792ms
+[JWLB-rasterizer_impl.cu-forward]14CUDAengine_InclusiveSum: 0.05008ms
+[JWLB-rasterizer_impl.cu-forward]15CUDAengine_BinningStatefromChunk: 0.0128ms
+[JWLB-rasterizer_impl.cu-forward]16CUDAengine_duplicateWithKeys: 0.300128ms
+[JWLB-rasterizer_impl.cu-forward]17CUDAengine_sortGaussianIndexKeys: 0.678912ms
+[JWLB-rasterizer_impl.cu-forward]18CUDAengine_identifyTileRanges: 0.049152ms
+[JWLB-rasterizer_impl.cu-forward]19CUDAengine_blendInOrder: 2.44941ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]12CUDAengine_forward: 4.1175ms
+ [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]07rasterizer: 4.927487850189209ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]06prep_rasterizer: 2.871295928955078ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-GaussianRasterizer-forward]08prep_invokeCUDA: 0.030719999223947525ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]09_1prep_CUDArasterizer: 0.018432000651955605ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]10_1CUDArasterizer: 5.45689582824707ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]07rasterizer: 5.6985602378845215ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]06prep_rasterizer: 2.7504639625549316ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-GaussianRasterizer-forward]08prep_invokeCUDA: 0.025599999353289604ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]09_1prep_CUDArasterizer: 0.014336000196635723ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]10_1CUDArasterizer: 5.8664960861206055ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]07rasterizer: 6.0733442306518555ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]06prep_rasterizer: 2.7453439235687256ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-GaussianRasterizer-forward]08prep_invokeCUDA: 0.025599999353289604ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]09_1prep_CUDArasterizer: 0.015359999611973763ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]10_1CUDArasterizer: 5.639167785644531ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]07rasterizer: 5.847040176391602ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]06prep_rasterizer: 2.743295907974243ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-GaussianRasterizer-forward]08prep_invokeCUDA: 0.025599999353289604ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]09_1prep_CUDArasterizer: 0.015359999611973763ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]10_1CUDArasterizer: 4.319231986999512ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]07rasterizer: 4.526080131530762ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]06prep_rasterizer: 2.787328004837036ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-GaussianRasterizer-forward]08prep_invokeCUDA: 0.026623999699950218ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]09_1prep_CUDArasterizer: 0.014336000196635723ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]10_1CUDArasterizer: 4.25164794921875ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]07rasterizer: 4.460544109344482ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]06prep_rasterizer: 2.781183958053589ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-GaussianRasterizer-forward]08prep_invokeCUDA: 0.025599999353289604ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]09_1prep_CUDArasterizer: 0.014336000196635723ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]10_1CUDArasterizer: 4.506624221801758ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]07rasterizer: 4.711423873901367ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]06prep_rasterizer: 2.7412478923797607ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-GaussianRasterizer-forward]08prep_invokeCUDA: 0.02457600086927414ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]09_1prep_CUDArasterizer: 0.014336000196635723ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]10_1CUDArasterizer: 4.5404157638549805ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]07rasterizer: 4.745215892791748ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]06prep_rasterizer: 2.7791359424591064ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-GaussianRasterizer-forward]08prep_invokeCUDA: 0.025599999353289604ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]09_1prep_CUDArasterizer: 0.014336000196635723ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]10_1CUDArasterizer: 4.314112186431885ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]07rasterizer: 4.516863822937012ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]06prep_rasterizer: 2.7494399547576904ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-GaussianRasterizer-forward]08prep_invokeCUDA: 0.025599999353289604ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]09_1prep_CUDArasterizer: 0.014336000196635723ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]10_1CUDArasterizer: 4.316160202026367ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]07rasterizer: 4.524032115936279ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]06prep_rasterizer: 2.8272640705108643ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-GaussianRasterizer-forward]08prep_invokeCUDA: 0.025599999353289604ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]09_1prep_CUDArasterizer: 0.014336000196635723ms [12/03 20:11:04]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]10_1CUDArasterizer: 5.678080081939697ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]07rasterizer: 5.882880210876465ms [12/03 20:11:04]
+[JWLB-gaussian_renderer/__init__.py-render]06prep_rasterizer: 2.748415946960449ms [12/03 20:11:05]
+[JWLB-diff_gaussian_rasterization/__init__.py-GaussianRasterizer-forward]08prep_invokeCUDA: 0.02969600073993206ms [12/03 20:11:05]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]09_1prep_CUDArasterizer: 0.014336000196635723ms [12/03 20:11:05]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]10_1CUDArasterizer: 5.1220479011535645ms [12/03 20:11:05]
+[JWLB-gaussian_renderer/__init__.py-render]07rasterizer: 5.345280170440674ms [12/03 20:11:05]
+[JWLB-gaussian_renderer/__init__.py-render]06prep_rasterizer: 2.7402238845825195ms [12/03 20:11:05]
+[JWLB-diff_gaussian_rasterization/__init__.py-GaussianRasterizer-forward]08prep_invokeCUDA: 0.025599999353289604ms [12/03 20:11:05]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]09_1prep_CUDArasterizer: 0.014336000196635723ms [12/03 20:11:05]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]10_1CUDArasterizer: 4.420608043670654ms [12/03 20:11:05]
+[JWLB-gaussian_renderer/__init__.py-render]07rasterizer: 4.646912097930908ms [12/03 20:11:05]
+[JWLB-gaussian_renderer/__init__.py-render]06prep_rasterizer: 2.7412478923797607ms [12/03 20:11:05]
+[JWLB-diff_gaussian_rasterization/__init__.py-GaussianRasterizer-forward]08prep_invokeCUDA: 0.030719999223947525ms [12/03 20:11:05]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]09_1prep_CUDArasterizer: 0.01740800030529499ms [12/03 20:11:05]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]10_1CUDArasterizer: 4.2393598556518555ms [12/03 20:11:05]
+[JWLB-gaussian_renderer/__init__.py-render]07rasterizer: 4.477952003479004ms [12/03 20:11:05]
+[JWLB-gaussian_renderer/__init__.py-render]06prep_rasterizer: 2.8231680393218994ms [12/03 20:11:05]
+[JWLB-diff_gaussian_rasterization/__init__.py-GaussianRasterizer-forward]08prep_invokeCUDA: 0.025599999353289604ms [12/03 20:11:05]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]09_1prep_CUDArasterizer: 0.015359999611973763ms[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]11CUDAengine_prep_forward: 0.04608ms
+[JWLB-rasterizer_impl.cu-forward]13CUDAengine_preprocess: 0.405504ms
+[JWLB-rasterizer_impl.cu-forward]14CUDAengine_InclusiveSum: 0.049536ms
+[JWLB-rasterizer_impl.cu-forward]15CUDAengine_BinningStatefromChunk: 0.013088ms
+[JWLB-rasterizer_impl.cu-forward]16CUDAengine_duplicateWithKeys: 0.299296ms
+[JWLB-rasterizer_impl.cu-forward]17CUDAengine_sortGaussianIndexKeys: 0.697344ms
+[JWLB-rasterizer_impl.cu-forward]18CUDAengine_identifyTileRanges: 0.049152ms
+[JWLB-rasterizer_impl.cu-forward]19CUDAengine_blendInOrder: 2.57126ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]12CUDAengine_forward: 4.23834ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]11CUDAengine_prep_forward: 0.052224ms
+[JWLB-rasterizer_impl.cu-forward]13CUDAengine_preprocess: 0.493568ms
+[JWLB-rasterizer_impl.cu-forward]14CUDAengine_InclusiveSum: 0.054784ms
+[JWLB-rasterizer_impl.cu-forward]15CUDAengine_BinningStatefromChunk: 0.281792ms
+[JWLB-rasterizer_impl.cu-forward]16CUDAengine_duplicateWithKeys: 0.321088ms
+[JWLB-rasterizer_impl.cu-forward]17CUDAengine_sortGaussianIndexKeys: 0.799744ms
+[JWLB-rasterizer_impl.cu-forward]18CUDAengine_identifyTileRanges: 0.05632ms
+[JWLB-rasterizer_impl.cu-forward]19CUDAengine_blendInOrder: 3.89222ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]12CUDAengine_forward: 6.06515ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]11CUDAengine_prep_forward: 0.044032ms
+[JWLB-rasterizer_impl.cu-forward]13CUDAengine_preprocess: 0.40448ms
+[JWLB-rasterizer_impl.cu-forward]14CUDAengine_InclusiveSum: 0.052032ms
+[JWLB-rasterizer_impl.cu-forward]15CUDAengine_BinningStatefromChunk: 0.030784ms
+[JWLB-rasterizer_impl.cu-forward]16CUDAengine_duplicateWithKeys: 0.296448ms
+[JWLB-rasterizer_impl.cu-forward]17CUDAengine_sortGaussianIndexKeys: 0.693248ms
+[JWLB-rasterizer_impl.cu-forward]18CUDAengine_identifyTileRanges: 0.049152ms
+[JWLB-rasterizer_impl.cu-forward]19CUDAengine_blendInOrder: 3.13754ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]12CUDAengine_forward: 4.82406ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]11CUDAengine_prep_forward: 0.045056ms
+[JWLB-rasterizer_impl.cu-forward]13CUDAengine_preprocess: 0.412672ms
+[JWLB-rasterizer_impl.cu-forward]14CUDAengine_InclusiveSum: 0.067872ms
+[JWLB-rasterizer_impl.cu-forward]15CUDAengine_BinningStatefromChunk: 0.013568ms
+[JWLB-rasterizer_impl.cu-forward]16CUDAengine_duplicateWithKeys: 0.277312ms
+[JWLB-rasterizer_impl.cu-forward]17CUDAengine_sortGaussianIndexKeys: 0.669696ms
+[JWLB-rasterizer_impl.cu-forward]18CUDAengine_identifyTileRanges: 0.049152ms
+[JWLB-rasterizer_impl.cu-forward]19CUDAengine_blendInOrder: 3.02694ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]12CUDAengine_forward: 4.67251ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]11CUDAengine_prep_forward: 0.045056ms
+[JWLB-rasterizer_impl.cu-forward]13CUDAengine_preprocess: 0.444416ms
+[JWLB-rasterizer_impl.cu-forward]14CUDAengine_InclusiveSum: 0.046016ms
+[JWLB-rasterizer_impl.cu-forward]15CUDAengine_BinningStatefromChunk: 0.012256ms
+[JWLB-rasterizer_impl.cu-forward]16CUDAengine_duplicateWithKeys: 0.238464ms
+[JWLB-rasterizer_impl.cu-forward]17CUDAengine_sortGaussianIndexKeys: 0.615424ms
+[JWLB-rasterizer_impl.cu-forward]18CUDAengine_identifyTileRanges: 0.043008ms
+[JWLB-rasterizer_impl.cu-forward]19CUDAengine_blendInOrder: 2.90099ms
+[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]12CUDAengine_forward: 4.4503ms
+ [12/03 20:11:05]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]10_1CUDArasterizer: 4.346879959106445ms [12/03 20:11:05]
+[JWLB-gaussian_renderer/__init__.py-render]07rasterizer: 4.586495876312256ms [12/03 20:11:05]
+[JWLB-gaussian_renderer/__init__.py-render]06prep_rasterizer: 2.854912042617798ms [12/03 20:11:05]
+[JWLB-diff_gaussian_rasterization/__init__.py-GaussianRasterizer-forward]08prep_invokeCUDA: 0.03174399957060814ms [12/03 20:11:05]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]09_1prep_CUDArasterizer: 0.01740800030529499ms [12/03 20:11:05]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]10_1CUDArasterizer: 6.1921281814575195ms [12/03 20:11:05]
+[JWLB-gaussian_renderer/__init__.py-render]07rasterizer: 6.428671836853027ms [12/03 20:11:05]
+[JWLB-gaussian_renderer/__init__.py-render]06prep_rasterizer: 2.7453439235687256ms [12/03 20:11:05]
+[JWLB-diff_gaussian_rasterization/__init__.py-GaussianRasterizer-forward]08prep_invokeCUDA: 0.025599999353289604ms [12/03 20:11:05]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]09_1prep_CUDArasterizer: 0.014336000196635723ms [12/03 20:11:05]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]10_1CUDArasterizer: 4.937727928161621ms [12/03 20:11:05]
+[JWLB-gaussian_renderer/__init__.py-render]07rasterizer: 5.142528057098389ms [12/03 20:11:05]
+[JWLB-gaussian_renderer/__init__.py-render]06prep_rasterizer: 2.7883520126342773ms [12/03 20:11:05]
+[JWLB-diff_gaussian_rasterization/__init__.py-GaussianRasterizer-forward]08prep_invokeCUDA: 0.02457600086927414ms [12/03 20:11:05]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]09_1prep_CUDArasterizer: 0.014336000196635723ms [12/03 20:11:05]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]10_1CUDArasterizer: 4.788224220275879ms [12/03 20:11:05]
+[JWLB-gaussian_renderer/__init__.py-render]07rasterizer: 4.992000102996826ms [12/03 20:11:05]
+[JWLB-gaussian_renderer/__init__.py-render]06prep_rasterizer: 2.7258880138397217ms [12/03 20:11:05]
+[JWLB-diff_gaussian_rasterization/__init__.py-GaussianRasterizer-forward]08prep_invokeCUDA: 0.02457600086927414ms [12/03 20:11:05]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]09_1prep_CUDArasterizer: 0.014336000196635723ms [12/03 20:11:05]
+[JWLB-diff_gaussian_rasterization/__init__.py-_RasterizeGaussians-forward]10_1CUDArasterizer: 4.563968181610107ms [12/03 20:11:05]
+[JWLB-gaussian_renderer/__init__.py-render]07rasterizer: 4.769792079925537ms [12/03 20:11:05]
+[JWLB-render.py-render_set]04render: 263.22125244140625ms [12/03 20:11:05]
+[JWLB-render.py-render_sets]21render_set: 263.583740234375ms [12/03 20:11:05]
+[JWLB-render.py-main]22render_sets: 11127.7431640625ms [12/03 20:11:05]

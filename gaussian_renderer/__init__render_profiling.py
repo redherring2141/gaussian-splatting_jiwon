@@ -18,13 +18,15 @@ from utils.sh_utils import eval_sh
 import time #JWLB_20231226
 
 def render(viewpoint_camera, pc : GaussianModel, pipe, bg_color : torch.Tensor, scaling_modifier = 1.0, override_color = None):
+    '''
     if pipe.pNSYSNVTX == True:#JWLB_20240130
         NSYSNVTX = True
         torch.cuda.nvtx.range_push("[JWLB-gaussian_renderer/__init__.py-render]06prep_rasterizer")   #JWLB_20240101
+    '''
     if pipe.pCUDAEVENT == True:#JWLB_20240130
         CUDAEVENT = True
         starter, ender = torch.cuda.Event(enable_timing=True), torch.cuda.Event(enable_timing=True);#JWLB_20240112    
-        torch.cuda.synchronize()  #JWLB_20231226
+        #torch.cuda.synchronize()  #JWLB_20231226
         starter.record()#JWLB_20240112
 
     """
@@ -93,12 +95,15 @@ def render(viewpoint_camera, pc : GaussianModel, pipe, bg_color : torch.Tensor, 
     else:
         colors_precomp = override_color
 
-
+    '''
     if pipe.pNSYSNVTX == True:#JWLB_20240130
         torch.cuda.nvtx.range_pop()   #JWLB_20240101
         torch.cuda.nvtx.range_push("[JWLB-gaussian_renderer/__init__.py-render]07rasterizer")   #JWLB_20240101
+    '''
     if pipe.pCUDAEVENT == True:#JWLB_20240130
-        ender.record(); torch.cuda.synchronize(); print(f'[JWLB-gaussian_renderer/__init__.py-render]06prep_rasterizer: {starter.elapsed_time(ender)}ms') #JWLB_20240112
+        ender.record()
+        torch.cuda.synchronize()
+        print(f'[JWLB-gaussian_renderer/__init__.py-render]06prep_rasterizer: {starter.elapsed_time(ender)}ms') #JWLB_20240112
         starter.record()#JWLB_20240112
 
     # Rasterize visible Gaussians to image, obtain their radii (on screen). 
