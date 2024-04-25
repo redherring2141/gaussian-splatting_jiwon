@@ -25,6 +25,73 @@ import sys      #JWLB_20231226
 import time     #JWLB_20231226
 #import nvtx     #JWLB_20240101
 
+import logging
+import socket
+from datetime import datetime, timedelta
+from torch.autograd.profiler import record_function
+from torchvision import models
+
+logging.basicConfig(
+   format="%(levelname)s:%(asctime)s %(message)s",
+   level=logging.INFO,
+   datefmt="%Y-%m-%d %H:%M:%S",
+)
+logger: logging.Logger = logging.getLogger(__name__)
+logger.setLevel(level=logging.INFO)
+
+TIME_FORMAT_STR: str = "%b_%d_%H_%M_%S"
+
+# Keep a max of 100,000 alloc/free events in the recorded history
+# leading up to the snapshot.
+MAX_NUM_OF_MEM_EVENTS_PER_SNAPSHOT: int = 100000
+
+def start_record_memory_history() -> None:
+   if not torch.cuda.is_available():
+       logger.info("CUDA unavailable. Not recording memory history")
+       return
+
+   logger.info("Starting snapshot record_memory_history")
+   torch.cuda.memory._record_memory_history(
+       max_entries=MAX_NUM_OF_MEM_EVENTS_PER_SNAPSHOT
+   )
+
+def stop_record_memory_history() -> None:
+   if not torch.cuda.is_available():
+       logger.info("CUDA unavailable. Not recording memory history")
+       return
+
+   logger.info("Stopping snapshot record_memory_history")
+   torch.cuda.memory._record_memory_history(enabled=None)
+
+def export_memory_snapshot() -> None:
+   if not torch.cuda.is_available():
+       logger.info("CUDA unavailable. Not exporting memory snapshot")
+       return
+
+   # Prefix for file names.
+   host_name = socket.gethostname()
+   timestamp = datetime.now().strftime(TIME_FORMAT_STR)
+   file_prefix = f"{host_name}_{timestamp}"
+
+   try:
+       logger.info(f"Saving snapshot to local file: {file_prefix}.pickle")
+       torch.cuda.memory._dump_snapshot(f"{file_prefix}.pickle")
+   except Exception as e:
+       logger.error(f"Failed to capture memory snapshot {e}")
+       return
+
+def trace_handler(prof: torch.profiler.profile):
+   # Prefix for file names.
+   host_name = socket.gethostname()
+   timestamp = datetime.now().strftime(TIME_FORMAT_STR)
+
+   file_prefix = f"{host_name}_{timestamp}"
+
+   # Construct the trace file.
+   prof.export_chrome_trace(f"{file_prefix}.json.gz")
+
+   # Construct the memory timeline file.
+   prof.export_memory_timeline(f"{file_prefix}.html", device="cuda:0")
 
 def render_set(model_path, name, iteration, views, gaussians, pipeline, background, NSYSNVTX, CUDAEVENT):
     if NSYSNVTX == True:#JWLB_20240130
@@ -72,7 +139,8 @@ def render_sets(dataset : ModelParams, iteration : int, pipeline : PipelineParam
             starter.record()#JWLB_20240112
 
         gaussians = GaussianModel(dataset.sh_degree)
-        scene = Scene(dataset, gaussians, load_iteration=iteration, shuffle=False)
+        #scene = Scene(dataset, gaussians, load_iteration=iteration, shuffle=False)
+        scene = Scene(dataset, gaussians, skip_train, skip_test, load_iteration=iteration, shuffle=False)#JWrev_20240322
 
         bg_color = [1,1,1] if dataset.white_background else [0, 0, 0]
         background = torch.tensor(bg_color, dtype=torch.float32, device="cuda")
@@ -107,6 +175,7 @@ if __name__ == "__main__":
     parser.add_argument("--quiet", action="store_true")
     parser.add_argument("--NSYSNVTX", action="store_true", default=False)  #JWLB_20240130
     parser.add_argument("--CUDAEVENT", action="store_true", default=False)   #JWLB_20240130
+    parser.add_argument("--MEMPROF", action="store_true", default=False)   #JWLB_20240322
     args = get_combined_args(parser)
     print("Rendering " + args.model_path)
 
