@@ -3,7 +3,7 @@
 
 for PART in orgin #fully noall noeq1 noeq2 noeq3 only1 only2 only3
 do
-    for FUNC in exp epf xpf
+    for FUNC in hpf epf xpf exp
     do
     	cp ./submodules/diff-gaussian-rasterization/cuda_rasterizer/$FUNC/forward_$PART.cu ./submodules/diff-gaussian-rasterization/cuda_rasterizer/forward.cu
     	pip install ./submodules/diff-gaussian-rasterization
