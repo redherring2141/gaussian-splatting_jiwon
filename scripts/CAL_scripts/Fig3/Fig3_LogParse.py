@@ -2,7 +2,7 @@ import sys
 #f = open("./TensoRF_jiwon/measurement/lb_test10.txt", 'r')
 file_name = sys.argv[1]
 output_name = sys.argv[2]
-num_trim = sys.argv[3]
+num_trim = int(sys.argv[3])
 f = open(file_name)
 
 lines = f.readlines()
