@@ -51,7 +51,7 @@ for line in lines:
 
 with open(output_name, "a") as summary:
     for m in metrics:
-        summary.write("<{}>_{}: {}\n".format(file_name[47:], m, sum(metrics[m])))
+        summary.write("<{}>_{}: {}\n".format(file_name[42:], m, sum(metrics[m])))
 
 '''
 print("<Total>")

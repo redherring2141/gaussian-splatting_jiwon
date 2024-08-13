@@ -11,10 +11,10 @@ then
 else
 	echo "Processing $1_$2_$3 ..."
 	#A100
-	python3 /work6/jiwon/NeRF/CAL_3DGS_rev/gaussian-splatting_jiwon/render_profiling.py -m /work6/jiwon/NeRF/models/$1/ --skip_train --CUDAEVENT > ./fig3_A100_20240813/log_render_CUDAEVENT_$1_$2_$3
+	python3 /work6/jiwon/NeRF/CAL_3DGS_rev/gaussian-splatting_jiwon/render_profiling.py -m /work6/jiwon/NeRF/output_full/$1/ --skip_train --CUDAEVENT > ./fig3_A100_20240813/log_render_CUDAEVENT_$1_$2_$3
 	python3 ./Fig3_LogParse.py ./fig3_A100_20240813/log_render_CUDAEVENT_$1_$2_$3 ./fig3_A100_20240813/summary_blending.txt
-	python3 /work6/jiwon/NeRF/CAL_3DGS_rev/gaussian-splatting_jiwon/render.py -m /work6/jiwon/NeRF/models/$1/ --skip_train
-	python3 /work6/jiwon/NeRF/CAL_3DGS_rev/gaussian-splatting_jiwon/metrics_profiling.py -m /work6/jiwon/NeRF/models/$1/ > ./fig3_A100_20240813/log_metric_CUDAEVENT_$1_$2_$3
+	python3 /work6/jiwon/NeRF/CAL_3DGS_rev/gaussian-splatting_jiwon/render.py -m /work6/jiwon/NeRF/output_full/$1/ --skip_train
+	python3 /work6/jiwon/NeRF/CAL_3DGS_rev/gaussian-splatting_jiwon/metrics_profiling.py -m /work6/jiwon/NeRF/output_full/$1/ > ./fig3_A100_20240813/log_metric_CUDAEVENT_$1_$2_$3
 	python3 ./Fig3_LogParse.py ./fig3_A100_20240813/log_metric_CUDAEVENT_$1_$2_$3 ./fig3_A100_20240813/summary_blending.txt
 
 	#Xavier-AGX
@@ -43,7 +43,7 @@ fi
 
 for PART in orgin fully noall noeq1 noeq2 noeq3 only1 only2 only3
 do
-    for FUNC in exp xpf epf
+    for FUNC in xpf epf #exp
     do
 		#A100
     	cp /work6/jiwon/NeRF/CAL_3DGS_rev/gaussian-splatting_jiwon/submodules/diff-gaussian-rasterization/cuda_rasterizer/$FUNC/forward_$PART.cu /work6/jiwon/NeRF/CAL_3DGS_rev/gaussian-splatting_jiwon/submodules/diff-gaussian-rasterization/cuda_rasterizer/forward.cu
