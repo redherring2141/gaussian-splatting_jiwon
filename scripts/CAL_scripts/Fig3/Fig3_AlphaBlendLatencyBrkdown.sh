@@ -44,7 +44,7 @@ fi
 for PART in orgin fully noall noeq1 noeq2 noeq3 only1 only2 only3
 do
     for FUNC in exp xpf epf
-#     do
+    do
     	cp /home/jetson-agx/NeRF/CAL_3DGS_rev/gaussian-splatting_jiwon/submodules/diff-gaussian-rasterization/cuda_rasterizer/$FUNC/forward_$PART.cu /home/jetson-agx/NeRF/CAL_3DGS_rev/gaussian-splatting_jiwon/submodules/diff-gaussian-rasterization/cuda_rasterizer/forward.cu
     	pip install /home/jetson-agx/NeRF/CAL_3DGS_rev/gaussian-splatting_jiwon/submodules/diff-gaussian-rasterization
 
@@ -56,5 +56,5 @@ do
     done
 done
 
-cp ./submodules/diff-gaussian-rasterization/cuda_rasterizer/forward_org.cu ./submodules/diff-gaussian-rasterization/cuda_rasterizer/forward.cu
+cp /home/jetson-agx/NeRF/CAL_3DGS_rev/gaussian-splatting_jiwon/submodules/diff-gaussian-rasterization/cuda_rasterizer/forward_org.cu /home/jetson-agx/NeRF/CAL_3DGS_rev/gaussian-splatting_jiwon/submodules/diff-gaussian-rasterization/cuda_rasterizer/forward.cu
 pip install /home/jetson-agx/NeRF/CAL_3DGS_rev/gaussian-splatting_jiwon/submodules/diff-gaussian-rasterization
