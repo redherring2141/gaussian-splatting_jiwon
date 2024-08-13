@@ -274,8 +274,8 @@ renderCUDA(
 {
 	// Identify current tile and associated min/max pixel range.
 	auto block = cg::this_thread_block();
-	uint32_t horizontal_blocks = (W + BLOCK_X - 1) / BLOCK_X;//ex) W=1600, H=900, (W+16-1)/16=101-1/16=101
-	uint2 pix_min = { block.group_index().x * BLOCK_X, block.group_index().y * BLOCK_Y };//
+	uint32_t horizontal_blocks = (W + BLOCK_X - 1) / BLOCK_X;
+	uint2 pix_min = { block.group_index().x * BLOCK_X, block.group_index().y * BLOCK_Y };
 	uint2 pix_max = { min(pix_min.x + BLOCK_X, W), min(pix_min.y + BLOCK_Y , H) };
 	uint2 pix = { pix_min.x + block.thread_index().x, pix_min.y + block.thread_index().y };
 	uint32_t pix_id = W * pix.y + pix.x;
@@ -301,8 +301,6 @@ renderCUDA(
 	uint32_t contributor = 0;
 	uint32_t last_contributor = 0;
 	float C[CHANNELS] = { 0 };
-	float tmp = 1.0f; //JWLB_20240202
-	//uint32_t pix_tmp[BLOCK_SIZE] = {0}; //JWLB_20240202
 
 	// Iterate over batches until all done or range is complete
 	for (int i = 0; i < rounds; i++, toDo -= BLOCK_SIZE)
@@ -323,13 +321,12 @@ renderCUDA(
 		}
 		block.sync();
 
-
 		// Iterate over current batch
 		for (int j = 0; !done && j < min(BLOCK_SIZE, toDo); j++)
 		{
 			// Keep track of current position in range
 			contributor++;
-/*
+
 			// Resample using conic matrix (cf. "Surface 
 			// Splatting" by Zwicker et al., 2001)
 			float2 xy = collected_xy[j];
@@ -337,50 +334,32 @@ renderCUDA(
 			float4 con_o = collected_conic_opacity[j];
 			float power = -0.5f * (con_o.x * d.x * d.x + con_o.z * d.y * d.y) - con_o.y * d.x * d.y;
 			if (power > 0.0f)
-			{
-				continue;//JWLB_20240201
-			}
-*/
-//			float4 con_o = {(float)0.3f, (float)0.4f, (float)0.5f, (float)0.6f};	float power = 0.2f;//2.0f;//JWLB_20240131
-			float4 con_o = {(float)0.3f*tmp, (float)0.4f*tmp, (float)0.5f*tmp, (float)0.6f*tmp};	float power = con_o.w*0.2f;//2.0f;//JWLB_20240131
-/*
+				continue;
+
 			// Eq. (2) from 3D Gaussian splatting paper.
 			// Obtain alpha by multiplying with Gaussian opacity
 			// and its exponential falloff from mean.
 			// Avoid numerical instabilities (see paper appendix). 
-			float alpha = min(0.99f, con_o.w * expf(power));
+			float alpha = min(0.99f, con_o.w * __expf(power));
 			if (alpha < 1.0f / 255.0f)
-			{
-				continue;//JWLB_20240201
-			}
+				continue;
 			float test_T = T * (1 - alpha);
 			if (test_T < 0.0001f)
 			{
-				done = true;//JWLB_20240201
-				continue;//JWLB_20240201
+				done = true;
+				continue;
 			}
-*/
-//			float alpha = 0.2f;	float test_T = 0.3f;//JWLB_20240131
-			float alpha = power*0.2f;	float test_T = alpha*0.3f;//JWLB_20240131
 
-/*
 			// Eq. (3) from 3D Gaussian splatting paper.
 			for (int ch = 0; ch < CHANNELS; ch++)
 				C[ch] += features[collected_id[j] * CHANNELS + ch] * alpha * T;
-				//C[ch] += features[collected_id[j] * CHANNELS + ch]*T;
-*/
-//			C[0]=0.3; C[1]=0.4; C[2]=0.5;//JWLB_20240131
-			C[0]=T*0.3; C[1]=T*0.4; C[2]=T*0.5;//JWLB_20240131
 
 			T = test_T;
 
 			// Keep track of last range entry to update this
 			// pixel.
 			last_contributor = contributor;
-			tmp = T;
 		}
-
-		//pix_tmp[i] = tmp;//JWLB_20240206
 	}
 
 	// All threads that treat valid pixel write out their final
@@ -391,7 +370,6 @@ renderCUDA(
 		n_contrib[pix_id] = last_contributor;
 		for (int ch = 0; ch < CHANNELS; ch++)
 			out_color[ch * H * W + pix_id] = C[ch] + T * bg_color[ch];
-			//out_color[ch * H * W + pix_id] = C[ch] + bg_color[ch];
 	}
 }
 

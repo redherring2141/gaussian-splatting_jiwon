@@ -1,7 +1,7 @@
 #!/bin/bash
 
-str1 = "A100"
-str2 = "Xavier"
+str1="A100"
+str2="Xavier"
 
 function BlendingLatencyBrkdown(){
 if [ $# -lt 4 ];
