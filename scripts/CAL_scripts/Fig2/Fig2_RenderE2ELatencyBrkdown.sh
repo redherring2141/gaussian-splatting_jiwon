@@ -27,7 +27,7 @@ fi
 }
 
 #for DATA in drjohnson playroom train truck bicycle bonsai counter flowers garden kitchen room stump treehill mic chair ship materials lego drums ficus hotdog
-for DATA in room #stump treehill mic chair ship materials lego drums ficus hotdog
+for DATA in train truck
 do
 	E2eLatencyBrkdown $DATA\_30k exp #$FUNC $PART
 	#echo $DATA\_30k $FUNC $PART
