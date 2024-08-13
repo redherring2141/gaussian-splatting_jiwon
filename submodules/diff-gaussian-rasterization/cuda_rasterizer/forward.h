@@ -59,8 +59,8 @@ namespace FORWARD
 		float* final_T,
 		uint32_t* n_contrib,
 		const float* bg_color,
-		//float* out_color);//JWLB_20240415
-		float* out_color, uint32_t* n_Gaussians);//JWLB_20240415
+		float* out_color);//JWLB_20240415
+		//float* out_color, uint32_t* n_Gaussians);//JWLB_20240415
 }
 
 

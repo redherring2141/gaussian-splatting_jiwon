@@ -306,8 +306,8 @@ int CudaRasterizer::Rasterizer::forward(
 	// Retrieve total number of Gaussian instances to launch and resize aux buffers
 	int num_rendered;
 	CHECK_CUDA(cudaMemcpy(&num_rendered, geomState.point_offsets + P - 1, sizeof(int), cudaMemcpyDeviceToHost), debug);
-	std::cout << "[JWDebug-rasterizer_impl.cu-forward]num_rendered: " << num_rendered << std::endl;
-	std::cout << "[JWDebug-rasterizer_impl.cu-forward]P: " << P << std::endl;
+	//std::cout << "[JWDebug-rasterizer_impl.cu-forward]num_rendered: " << num_rendered << std::endl;//JWLB
+	//std::cout << "[JWDebug-rasterizer_impl.cu-forward]P: " << P << std::endl;//JWLB
 
 
 #ifdef _NSYSNVTX_
@@ -405,8 +405,6 @@ int CudaRasterizer::Rasterizer::forward(
 	cudaEventRecord(start_JWLB);	cudaEventSynchronize(start_JWLB);	//JWLB_20231226			
 #endif
 
-
-	uint32_t* n_Gaussians = new uint32_t[width * height];
 	// Let each tile blend its range of Gaussians independently in parallel
 	const float* feature_ptr = colors_precomp != nullptr ? colors_precomp : geomState.rgb;
 	CHECK_CUDA(FORWARD::render(
@@ -420,46 +418,7 @@ int CudaRasterizer::Rasterizer::forward(
 		imgState.accum_alpha,
 		imgState.n_contrib,
 		background,
-		//out_color), debug)//JWLB_20240415
-		out_color,n_Gaussians), debug)//JWLB_20240415
-
-
-	
-	uint32_t* host_n_contrib = new uint32_t[width * height];//JWLB_20240207
-	cudaMemcpy(host_n_contrib, n_Gaussians, sizeof(uint32_t) * width * height, cudaMemcpyDeviceToHost);//JWLB_20240207
-	//cudaMemcpy(host_n_contrib, imgState.n_contrib, sizeof(uint32_t) * width * height, cudaMemcpyDeviceToHost);//JWLB_20240207
-	std::ofstream outfile("heatmap_data.txt");
-	if (!outfile.is_open())
-	{
-		std::cerr << "Failed to open the file for writing." << std::endl;
-		return 1;
-	}
-	outfile << width << " " << height << "\n";
-	for(int i = 0; i<width*height; ++i)//JWLB_20240207
-		outfile << n_Gaussians[i] << "\n";
-		//outfile << imgState.n_contrib[i] << "\n";
-		//outfile << host_n_contrib[i] << "\n";
-	outfile.close();
-	
-
-
-
-	/*
-	uint32_t* host_n_contrib = new uint32_t[width * height];//JWLB_20240207
-	cudaMemcpy(host_n_contrib, imgState.n_contrib, sizeof(uint32_t) * width * height, cudaMemcpyDeviceToHost);//JWLB_20240207
-	//std::cout << "<width, height>= " << width << height << std::endl;//JWLB_20240207
-	std::ofstream outfile("heatmap_data.txt");
-	if (!outfile.is_open())
-	{
-		std::cerr << "Failed to open the file for writing." << std::endl;
-		return 1;
-	}
-	outfile << width << " " << height << "\n";
-	for(int i = 0; i<width*height; ++i)//JWLB_20240207
-		outfile << host_n_contrib[i] << "\n";
-	//	std::cout << host_n_contrib[i] << std::endl;//JWLB_20240207
-	outfile.close();
-	*/
+		out_color), debug)//JWLB_20240415
 
 	
 
