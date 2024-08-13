@@ -2,6 +2,7 @@ import sys
 #f = open("./TensoRF_jiwon/measurement/lb_test10.txt", 'r')
 file_name = sys.argv[1]
 output_name = sys.argv[2]
+num_trim = sys.argv[3]
 f = open(file_name)
 
 lines = f.readlines()
@@ -51,7 +52,7 @@ for line in lines:
 
 with open(output_name, "a") as summary:
     for m in metrics:
-        summary.write("<{}>_{}: {}\n".format(file_name[42:], m, sum(metrics[m])))
+        summary.write("<{}>_{}: {}\n".format(file_name[num_trim:], m, sum(metrics[m])))
 
 '''
 print("<Total>")
