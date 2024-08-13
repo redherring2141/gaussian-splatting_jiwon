@@ -1,6 +1,7 @@
 import sys
 #f = open("./TensoRF_jiwon/measurement/lb_test10.txt", 'r')
 file_name = sys.argv[1]
+output_name = sys.argv[2]
 f = open(file_name)
 
 lines = f.readlines()
@@ -48,9 +49,9 @@ for line in lines:
         '''
         metrics[function_name].append(float(value))
 
-with open("summary_blending.txt", "a") as summary:
+with open(output_name, "a") as summary:
     for m in metrics:
-        summary.write("<{}>_{}: {}\n".format(file_name[54:], m, sum(metrics[m])))
+        summary.write("<{}>_{}: {}\n".format(file_name[47:], m, sum(metrics[m])))
 
 '''
 print("<Total>")
