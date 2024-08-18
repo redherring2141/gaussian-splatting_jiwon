@@ -18,11 +18,11 @@ else
 	if [ $3 == $str1 ];
 	then	
 		#A100
-		python3 /work6/jiwon/NeRF/CAL_3DGS_rev/gaussian-splatting_jiwon/render_profiling.py -m /work6/jiwon/NeRF/output_full/$1/ --skip_train --CUDAEVENT > ../../../../fig2_A100_20240813/log_render_CUDAEVENT_$1_$2
-		python3 ./Fig2_LogParser.py ../../../../fig2_A100_20240813/log_render_CUDAEVENT_$1_$2 ../../../../fig2_A100_20240813/summary_render_CUDAEVENT.txt $4
+		python3 /work6/jiwon/NeRF/CAL_3DGS_rev/gaussian-splatting_jiwon/render_profiling.py -m /work6/jiwon/NeRF/output_full/$1/ --skip_train --CUDAEVENT > ../../../../fig2_A100_20240814/log_render_CUDAEVENT_$1_$2
+		python3 ./Fig2_LogParser.py ../../../../fig2_A100_20240814/log_render_CUDAEVENT_$1_$2 ../../../../fig2_A100_20240814/summary_render_CUDAEVENT.txt $4
 		python3 /work6/jiwon/NeRF/CAL_3DGS_rev/gaussian-splatting_jiwon/render.py -m /work6/jiwon/NeRF/output_full/$1/ --skip_train
-		python3 /work6/jiwon/NeRF/CAL_3DGS_rev/gaussian-splatting_jiwon/metrics_profiling.py -m /work6/jiwon/NeRF/output_full/$1/ > ../../../../fig2_A100_20240813/log_metric_CUDAEVENT_$1_$2
-		python3 ./Fig2_LogParser.py ../../../../fig2_A100_20240813/log_metric_CUDAEVENT_$1_$2 ../../../../fig2_A100_20240813/summary_render_CUDAEVENT.txt $4
+		python3 /work6/jiwon/NeRF/CAL_3DGS_rev/gaussian-splatting_jiwon/metrics_profiling.py -m /work6/jiwon/NeRF/output_full/$1/ > ../../../../fig2_A100_20240814/log_metric_CUDAEVENT_$1_$2
+		python3 ./Fig2_LogParser.py ../../../../fig2_A100_20240814/log_metric_CUDAEVENT_$1_$2 ../../../../fig2_A100_20240814/summary_render_CUDAEVENT.txt $4
 	else
 		#Xavier-AGX
 		python3 /home/jetson-agx/NeRF/CAL_3DGS_rev/gaussian-splatting_jiwon/render_profiling.py -m /home/jetson-agx/NeRF/models/$1/ --skip_train --CUDAEVENT > ../../../../fig2_XavierAGX_20240812/log_render_CUDAEVENT_$1_$2
@@ -46,7 +46,7 @@ else
 fi
 
 #for DATA in drjohnson playroom train truck bicycle bonsai counter flowers garden kitchen room stump treehill mic chair ship materials lego drums ficus hotdog
-for DATA in train truck
+for DATA in train truck 
 do
 	E2eLatencyBrkdown $DATA\_30k exp $1 $2 #$FUNC $PART
 	#echo $DATA\_30k $FUNC $PART

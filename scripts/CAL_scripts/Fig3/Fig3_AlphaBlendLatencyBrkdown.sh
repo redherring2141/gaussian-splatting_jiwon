@@ -18,11 +18,11 @@ else
 	if [ $4 == $str1 ];
 	then
 		#A100
-		python3 /work6/jiwon/NeRF/CAL_3DGS_rev/gaussian-splatting_jiwon/render_profiling.py -m /work6/jiwon/NeRF/output_full/$1/ --skip_train --CUDAEVENT > ../../../../fig3_A100_20240813/log_render_CUDAEVENT_$1_$2_$3
-		python3 ./Fig3_LogParse.py ../../../../fig3_A100_20240813/log_render_CUDAEVENT_$1_$2_$3 ../../../../fig3_A100_20240813/summary_blending.txt $5
+		python3 /work6/jiwon/NeRF/CAL_3DGS_rev/gaussian-splatting_jiwon/render_profiling.py -m /work6/jiwon/NeRF/output_full/$1/ --skip_train --CUDAEVENT > ../../../../fig3_A100_20240818/log_render_CUDAEVENT_$1_$2_$3
+		python3 ./Fig3_LogParse.py ../../../../fig3_A100_20240818/log_render_CUDAEVENT_$1_$2_$3 ../../../../fig3_A100_20240818/summary_blending.txt $5
 		python3 /work6/jiwon/NeRF/CAL_3DGS_rev/gaussian-splatting_jiwon/render.py -m /work6/jiwon/NeRF/output_full/$1/ --skip_train
-		python3 /work6/jiwon/NeRF/CAL_3DGS_rev/gaussian-splatting_jiwon/metrics_profiling.py -m /work6/jiwon/NeRF/output_full/$1/ > ../../../../fig3_A100_20240813/log_metric_CUDAEVENT_$1_$2_$3
-		python3 ./Fig3_LogParse.py ../../../../fig3_A100_20240813/log_metric_CUDAEVENT_$1_$2_$3 ../../../../fig3_A100_20240813/summary_blending.txt $5
+		python3 /work6/jiwon/NeRF/CAL_3DGS_rev/gaussian-splatting_jiwon/metrics_profiling.py -m /work6/jiwon/NeRF/output_full/$1/ > ../../../../fig3_A100_20240818/log_metric_CUDAEVENT_$1_$2_$3
+		python3 ./Fig3_LogParse.py ../../../../fig3_A100_20240818/log_metric_CUDAEVENT_$1_$2_$3 ../../../../fig3_A100_20240818/summary_blending.txt $5
 	else
 		#Xavier-AGX
 		python3 /home/jetson-agx/NeRF/CAL_3DGS_rev/gaussian-splatting_jiwon/render_profiling.py -m /home/jetson-agx/NeRF/models/$1/ --skip_train --CUDAEVENT > ../../../../fig3_XavierAGX_20240813/log_render_CUDAEVENT_$1_$2_$3
@@ -51,7 +51,7 @@ fi
 
 for PART in orgin fully noall noeq1 noeq2 noeq3 only1 only2 only3
 do
-    for FUNC in xpf epf #exp
+    for FUNC in xpf epf exp
     do
 		if [ $1 == $str1 ];
 		then		
@@ -64,7 +64,7 @@ do
 			pip install /home/jetson-agx/NeRF/CAL_3DGS_rev/gaussian-splatting_jiwon/submodules/diff-gaussian-rasterization
 		fi
 
-		for DATA in drjohnson playroom train truck bicycle bonsai counter flowers garden kitchen room stump treehill
+		for DATA in train truck #drjohnson playroom train truck bicycle bonsai counter flowers garden kitchen room stump treehill
         do
             BlendingLatencyBrkdown $DATA\_30k $FUNC $PART $1 $2
             #echo $DATA\_30k $FUNC $PART
