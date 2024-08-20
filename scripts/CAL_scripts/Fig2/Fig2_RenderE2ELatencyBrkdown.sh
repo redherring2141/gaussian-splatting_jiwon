@@ -51,3 +51,4 @@ do
 	E2eLatencyBrkdown $DATA\_30k exp $1 $2 #$FUNC $PART
 	#echo $DATA\_30k $FUNC $PART
 done
+#String trim parameter input is 52 for A100 52 for Xavier

@@ -82,3 +82,4 @@ else
 	cp /home/jetson-agx/NeRF/CAL_3DGS_rev/gaussian-splatting_jiwon/submodules/diff-gaussian-rasterization/cuda_rasterizer/forward_org.cu /home/jetson-agx/NeRF/CAL_3DGS_rev/gaussian-splatting_jiwon/submodules/diff-gaussian-rasterization/cuda_rasterizer/forward.cu
 	pip install /home/jetson-agx/NeRF/CAL_3DGS_rev/gaussian-splatting_jiwon/submodules/diff-gaussian-rasterization
 fi
+#String trim parameter input is 52 for A100 52 for Xavier

@@ -45,3 +45,4 @@ for DATA in drjohnson playroom train truck bicycle bonsai counter flowers garden
 do
 	E2eMemBrkdown $DATA\_30k exp $1 #$FUNC $PART
 done
+#String trim parameter input is 52 for A100 52 for Xavier
