@@ -64,7 +64,7 @@ do
 			pip install /home/jetson-agx/NeRF/CAL_3DGS_rev/gaussian-splatting_jiwon/submodules/diff-gaussian-rasterization
 		fi
 
-		for DATA in train truck #drjohnson playroom train truck bicycle bonsai counter flowers garden kitchen room stump treehill
+		for DATA in train truck #playroom drjohnson train truck counter bonsai room kitchen treehill flowers stump garden bicycle 
         do
             BlendingLatencyBrkdown $DATA\_30k $FUNC $PART $1 $2
             #echo $DATA\_30k $FUNC $PART

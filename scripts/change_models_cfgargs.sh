@@ -51,7 +51,13 @@
 # 	cp /work6/jiwon/NeRF/datasets/Tanks_and_Temples/$DATA/transforms* /work5/jiwon/NeRF/datasets/$DATA
 # done
 
-for DATA in drjohnson playroom train truck bicycle bonsai counter flowers garden kitchen room stump treehill
+# for DATA in drjohnson playroom train truck bicycle bonsai counter flowers garden kitchen room stump treehill
+# do
+# 	cp /work6/jiwon/NeRF/output_full/$DATA\_30k/$DATA\_30k.ingp /work5/jiwon/NeRF/models_pretrained/$DATA\_30k/
+# done
+
+for DATA in playroom drjohnson train truck counter bonsai room kitchen treehill flowers stump garden bicycle 
 do
-	cp /work6/jiwon/NeRF/output_full/$DATA\_30k/$DATA\_30k.ingp /work5/jiwon/NeRF/models_pretrained/$DATA\_30k/
+	cd /home/jetson-agx/NeRF/models_pretrained/$DATA\_30k/
+	sed -i 's/work5\/jiwon/home\/jetson-agx/g' cfg_args
 done

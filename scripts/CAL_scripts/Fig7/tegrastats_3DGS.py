@@ -10,10 +10,10 @@ if len(sys.argv) != 2:
 model_name = sys.argv[1]
 
 # Command to start 3DGS rendering
-render_command = ["python3", "/home/jetson-agx/NeRF/gaussian-splatting/render.py", "-m", f"/home/jetson-agx/NeRF/models/{model_name}_30k", "--skip_train"]
+render_command = ["python3", "/home/jetson-agx/NeRF/gaussian-splatting/render.py", "-m", f"/home/jetson-agx/NeRF/models_pretrained/{model_name}_30k", "--skip_train"]
 
 # Command to start tegrastats
-tegrastats_command = ["sudo", "tegrastats", "--verbose", "--interval", "50", "--logfile", f"/home/jetson-agx/NeRF/power_measurement/3DGS_20240806/{model_name}.csv"]
+tegrastats_command = ["sudo", "tegrastats", "--verbose", "--interval", "50", "--logfile", f"/home/jetson-agx/NeRF/CAL_3DGS_rev/fig7_XavierAGX_20240822/{model_name}.csv"]
 
 # Start the 3DGS rendering process
 render_process = subprocess.Popen(render_command)
