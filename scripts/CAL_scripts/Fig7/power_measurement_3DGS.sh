@@ -7,7 +7,7 @@ TEGRSTATS_PID_FILE="tegrastats_pid.txt"
 
 
 #for DATA in playroom drjohnson train truck counter bonsai room kitchen treehill flowers stump garden bicycle 
-for DATA in train truck playroom drjohnson
+for DATA in room #train truck playroom drjohnson
 do
     python3 ./tegrastats_3DGS.py $DATA
 
