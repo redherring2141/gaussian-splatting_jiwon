@@ -306,8 +306,8 @@ int CudaRasterizer::Rasterizer::forward(
 	// Retrieve total number of Gaussian instances to launch and resize aux buffers
 	int num_rendered;
 	CHECK_CUDA(cudaMemcpy(&num_rendered, geomState.point_offsets + P - 1, sizeof(int), cudaMemcpyDeviceToHost), debug);
-	//std::cout << "[JWDebug-rasterizer_impl.cu-forward]num_rendered: " << num_rendered << std::endl;//JWLB
-	//std::cout << "[JWDebug-rasterizer_impl.cu-forward]P: " << P << std::endl;//JWLB
+	std::cout << "[JWDebug-rasterizer_impl.cu-forward]num_rendered: " << num_rendered << std::endl;
+	std::cout << "[JWDebug-rasterizer_impl.cu-forward]P: " << P << std::endl;
 
 
 #ifdef _NSYSNVTX_
@@ -405,6 +405,8 @@ int CudaRasterizer::Rasterizer::forward(
 	cudaEventRecord(start_JWLB);	cudaEventSynchronize(start_JWLB);	//JWLB_20231226			
 #endif
 
+
+	uint32_t* n_Gaussians = new uint32_t[width * height];
 	// Let each tile blend its range of Gaussians independently in parallel
 	const float* feature_ptr = colors_precomp != nullptr ? colors_precomp : geomState.rgb;
 	CHECK_CUDA(FORWARD::render(
@@ -419,7 +421,14 @@ int CudaRasterizer::Rasterizer::forward(
 		imgState.n_contrib,
 		background,
 		out_color), debug)//JWLB_20240415
+		//out_color,n_Gaussians), debug)//JWLB_20240415
 
+
+	
+	// uint2* rangexy = new uint2;//JWLB_20240207
+	// cudaMemcpy(rangexy, imgState.ranges, sizeof(uint2), cudaMemcpyDeviceToHost);//JWLB_20240207
+	// //cudaMemcpy(host_n_contrib, imgState.n_contrib, sizeof(uint32_t) * width * height, cudaMemcpyDeviceToHost);//JWLB_20240207
+	// std::cout << "rangexy = " << imgState.ranges->x << ", " << imgState.ranges->y << std::endl;//JWLB_20240207
 	
 
 
