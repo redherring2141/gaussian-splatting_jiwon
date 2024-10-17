@@ -24,9 +24,6 @@
 #include <string>
 #include <functional>
 
-//#include <tinylogger/tinylogger.h>//JWLB_20231226
-#include "nvToolsExt.h"	//JWLB_20240101
-
 std::function<char*(size_t N)> resizeFunctional(torch::Tensor& t) {
     auto lambda = [&t](size_t N) {
         t.resize_({(long long)N});
@@ -57,17 +54,6 @@ RasterizeGaussiansCUDA(
 	const bool prefiltered,
 	const bool debug)
 {
-
-
-#ifdef _NSYSNVTX_	
-	nvtxRangePush("[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]11CUDAengine_prep_forward");//JWLB_20240101
-#endif
-#ifdef _CUDAEVENT_
-	cudaEvent_t start_JWLB, stop_JWLB; float msec=0; cudaEventCreate(&start_JWLB);	cudaEventCreate(&stop_JWLB);	//JWLB_20231226
-	cudaEventRecord(start_JWLB);	cudaEventSynchronize(start_JWLB);	//JWLB_20231226
-#endif
-
-
   if (means3D.ndimension() != 2 || means3D.size(1) != 3) {
     AT_ERROR("means3D must have dimensions (num_points, 3)");
   }
@@ -90,18 +76,6 @@ RasterizeGaussiansCUDA(
   std::function<char*(size_t)> geomFunc = resizeFunctional(geomBuffer);
   std::function<char*(size_t)> binningFunc = resizeFunctional(binningBuffer);
   std::function<char*(size_t)> imgFunc = resizeFunctional(imgBuffer);
-
-
-#ifdef _NSYSNVTX_
-	nvtxRangePop();//JWLB_20240101
-	nvtxRangePush("[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]12CUDAengine_forward");//JWLB_20240101	
-#endif
-#ifdef _CUDAEVENT_
-	cudaEventRecord(stop_JWLB);		cudaEventSynchronize(stop_JWLB);	cudaEventElapsedTime(&msec, start_JWLB, stop_JWLB);	//JWLB_20231226
-	std::cout << "[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]11CUDAengine_prep_forward: " << msec << "ms" << std::endl; //JWLB_20231226
-	cudaEventRecord(start_JWLB);	cudaEventSynchronize(start_JWLB);	//JWLB_20231226
-#endif
-
   
   int rendered = 0;
   if(P != 0)
@@ -137,16 +111,6 @@ RasterizeGaussiansCUDA(
 		radii.contiguous().data<int>(),
 		debug);
   }
-
-
-#ifdef _NSYSNVTX_
-	nvtxRangePop();//JWLB_20240101
-#endif
-#ifdef _CUDAEVENT_
-	cudaEventRecord(stop_JWLB);		cudaEventSynchronize(stop_JWLB);	cudaEventElapsedTime(&msec, start_JWLB, stop_JWLB);	//JWLB_20231226
-	std::cout << "[JWLB-rasterize_points.cu-RasterizeGaussiansCUDA]12CUDAengine_forward: " << msec << "ms" << std::endl; //JWLB_20231226
-#endif
-
   return std::make_tuple(rendered, out_color, radii, geomBuffer, binningBuffer, imgBuffer);
 }
 
@@ -174,14 +138,6 @@ std::tuple<torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor, torch::Te
 	const torch::Tensor& imageBuffer,
 	const bool debug) 
 {
-#ifdef _NSYSNVTX_
-	nvtxRangePush("[JWLB-rasterize_points.cu-RasterizeGaussiansBackwardCUDA]20CUDAengine_BackwardCUDA");//JWLB_20240109
-#endif
-#ifdef _CUDAEVENT_
-	cudaEvent_t start_JWLB, stop_JWLB; float msec=0; cudaEventCreate(&start_JWLB);	cudaEventCreate(&stop_JWLB);	//JWLB_20240109
-	cudaEventRecord(start_JWLB);	cudaEventSynchronize(start_JWLB);	//JWLB_20240109
-#endif
-
   const int P = means3D.size(0);
   const int H = dL_dout_color.size(1);
   const int W = dL_dout_color.size(2);
@@ -235,13 +191,6 @@ std::tuple<torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor, torch::Te
 	  dL_drotations.contiguous().data<float>(),
 	  debug);
   }
-#ifdef _NSYSNVTX_
-	nvtxRangePop();//JWLB_20240109
-#endif
-#ifdef _CUDAEVENT_
-	cudaEventRecord(stop_JWLB);		cudaEventSynchronize(stop_JWLB);	cudaEventElapsedTime(&msec, start_JWLB, stop_JWLB);	//JWLB_20240109
-	std::cout << "[JWLB-rasterize_points.cu-RasterizeGaussiansBackwardCUDA]20CUDAengine_BackwardCUDA: " << msec << "ms" << std::endl; //JWLB_20240109
-#endif
 
   return std::make_tuple(dL_dmeans2D, dL_dcolors, dL_dopacity, dL_dmeans3D, dL_dcov3D, dL_dsh, dL_dscales, dL_drotations);
 }

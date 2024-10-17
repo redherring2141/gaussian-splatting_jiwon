@@ -440,6 +440,20 @@ int CudaRasterizer::Rasterizer::forward(
 		//outfile << imgState.n_contrib[i] << "\n";
 		//outfile << host_n_contrib[i] << "\n";
 	outfile.close();
+
+
+	// uint2* host_n_ranges = new uint2[width * height];//JWLB_20240207
+	// cudaMemcpy(host_n_ranges, imgState.ranges, sizeof(uint2) * width * height, cudaMemcpyDeviceToHost);//JWLB_20240207
+	// std::ofstream outfile("range_data.txt");
+	// if (!outfile.is_open())
+	// {
+	// 	std::cerr << "Failed to open the file for writing." << std::endl;
+	// 	return 1;
+	// }
+	// outfile << width << " " << height << "\n";
+	// for(int i = 0; i<width*height; ++i)//JWLB_20240207
+	// 	outfile << host_n_ranges[i].x << " " << host_n_ranges[i].y << "\n";
+	// outfile.close();	
 	
 
 
